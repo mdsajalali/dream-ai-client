@@ -1,36 +1,113 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AI-Powered Text-to-Image Generator
 
-## Getting Started
+🚀 **Build a powerful AI-driven text-to-image generator with a dynamic frontend and a secure backend.**
 
-First, run the development server:
+## 🔥 Tech Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+### Frontend:
+
+- **Next.js** – Fast, SEO-friendly React framework
+- **Tailwind CSS** – Utility-first CSS for rapid styling
+- **ShadCN** – Modern UI components
+- **NextAuth** – Secure authentication
+- **Sonner** – Elegant toast notifications
+- **Swiper.js** – Smooth image previews
+- **Lucide React** – Minimalist icons
+
+### Backend:
+
+- **Node.js & Express** – Scalable server-side framework
+- **Mongoose** – MongoDB ORM
+- **Flux AI** – AI-driven image generation
+- **Supabase** – Database & storage solution
+
+---
+
+## 📌 Features
+
+✅ AI-powered image generation from text prompts  
+✅ Secure authentication with NextAuth  
+✅ Real-time toast notifications with Sonner  
+✅ Smooth image previews with Swiper.js  
+✅ Cloud-based storage with Supabase
+
+---
+
+## 🚀 Getting Started
+
+### 1️⃣ Clone the Repository
+
+```sh
+git clone https://github.com/mdsajalali/dream-ai-client.git
+cd dream-ai-client
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2️⃣ Install Dependencies
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+#### Frontend
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```sh
+cd dream-ai-client
+npm install
+```
 
-## Learn More
+#### Backend
 
-To learn more about Next.js, take a look at the following resources:
+```sh
+cd backend
+npm install
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 3️⃣ Set Up Environment Variables
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Create a **.env.local** file in the frontend and **.env** file in the backend. Add the following:
 
-## Deploy on Vercel
+#### Frontend (.env.local)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+NEXTAUTH_URL=http://localhost:3000
+NEXT_PUBLIC_SUPABASE_URL=your-supabase-url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+#### Backend (.env)
+
+```
+MONGO_URI=your-mongodb-uri
+FLUX_AI_API_KEY=your-flux-ai-key
+SUPABASE_SERVICE_ROLE_KEY=your-supabase-service-key
+```
+
+### 4️⃣ Run the Project
+
+#### Start Backend
+
+```sh
+cd backend
+npm run dev
+```
+
+#### Start Frontend
+
+```sh
+cd frontend
+npm run dev
+```
+
+The app will be available at **http://localhost:3000** 🚀
+
+---
+
+## 📜 License
+
+This project is **open-source** and available under the MIT License.
+
+---
+
+### 🌟 Contributions
+
+Contributions are welcome! Feel free to fork the repo and submit a pull request.
+
+---
+
+Made with ❤️ by [Md. Sajal Ali]
