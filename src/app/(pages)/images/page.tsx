@@ -7,8 +7,6 @@ import axiosInstance from "@/utils/axiosInstance";
 const ImagesPage = () => {
   const [images, setImages] = useState([]);
 
-  console.log("images", images);
-
   useEffect(() => {
     axiosInstance
       .get("/discover-image")
@@ -21,8 +19,8 @@ const ImagesPage = () => {
   return (
     <Container>
       <div className="p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        {images?.map((image) => (
-          <ImageCard key={image._id} image={image} />
+        {images?.map((image, idx) => (
+          <ImageCard key={idx} image={image} />
         ))}
       </div>
     </Container>

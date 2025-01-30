@@ -1,11 +1,10 @@
 // Image Cart type
-interface Image {
-  id: number;
-  url: string;
-  creator: string;
-  createdAt: string;
-}
-
 export interface ImageCardProps {
-  image: Image;
+  image: {
+    _id: string;
+    imageUrl: string;
+    creator: string;
+    createdAt: string;
+    prompt: string;
+  };
 }

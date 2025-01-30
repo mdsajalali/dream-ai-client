@@ -1,3 +1,4 @@
+"use client";
 import { useState } from "react";
 import { toast } from "sonner";
 import { ImageCardProps } from "@/types/index.type";
@@ -11,8 +12,10 @@ const ImageCard = ({ image }: ImageCardProps) => {
       await navigator.clipboard.writeText(image.imageUrl);
       setCopied(true);
       toast.success("Copied!");
-      setTimeout(() => setCopied(false), 2000); // Revert icon after 2 seconds
-    } catch (error) {}
+      setTimeout(() => setCopied(false), 2000);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleDownload = async () => {
@@ -22,13 +25,15 @@ const ImageCard = ({ image }: ImageCardProps) => {
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = `dreamai-${image._id}.jpg`; // Custom filename
+      a.download = `dreamai-${image._id}.jpg`;
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
       toast.success("Download started!");
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
