@@ -15,6 +15,22 @@ const ImageCard = ({ image }: ImageCardProps) => {
     } catch (error) {}
   };
 
+  const handleDownload = async () => {
+    try {
+      const response = await fetch(image.imageUrl);
+      const blob = await response.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `dreamai-${image._id}.jpg`; // Custom filename
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      toast.success("Download started!");
+    } catch (error) {}
+  };
+
   return (
     <div key={image._id} className="bg-white p-4 rounded-lg shadow-lg">
       <img
@@ -30,7 +46,10 @@ const ImageCard = ({ image }: ImageCardProps) => {
         <p className="text-sm text-gray-600"> {image.prompt}</p>
       </div>
       <div className="flex items-center gap-4 mt-3">
-        <Download className="w-5 h-5 cursor-pointer text-gray-600 hover:text-black" />
+        <Download
+          className="w-5 h-5 cursor-pointer text-gray-600 hover:text-black"
+          onClick={handleDownload}
+        />
         <Share2 className="w-5 h-5 cursor-pointer text-gray-600 hover:text-black" />
         <div onClick={handleCopy} className="cursor-pointer">
           {copied ? (
