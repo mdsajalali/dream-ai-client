@@ -1,16 +1,49 @@
+"use client";
+import { useState } from "react";
 import { Download, Share, Copy, Heart } from "lucide-react";
+import axiosInstance from "@/utils/axiosInstance";
 
 const Discover = () => {
+  const [imageUrl, setImageUrl] = useState("");
+  const [generatedImage, setGeneratedImage] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  const handleGenerate = async () => {
+    if (!imageUrl) return;
+
+    setLoading(true);
+    try {
+      const response = await axiosInstance.post("/generate-image", {
+        prompt: imageUrl,
+      });
+      setGeneratedImage(response?.data.imageUrl);
+    } catch (error) {
+      console.error("Error generating image:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="min-h-[calc(100vh-100px)] flex flex-col items-center justify-center p-4">
       <div className="w-full max-w-md bg-gray-800 p-6 rounded-lg shadow-xl">
         {/* Image Placeholder */}
         <div className="relative w-full h-64 bg-gray-700 flex items-center justify-center rounded-md overflow-hidden shadow-md">
-          <img
-            src="https://i.pinimg.com/736x/be/1b/75/be1b75b50475a53d3bb802a3e64c15e6.jpg"
-            alt="Discover"
-            className="w-full h-full object-cover"
-          />
+          {loading ? (
+            <p className="text-white">Generating...</p>
+          ) : generatedImage ? (
+            <img
+              src={generatedImage}
+              alt="Generated"
+              className="w-full h-full object-cover"
+            />
+          ) : (
+            <img
+              src="https://i.pinimg.com/736x/be/1b/75/be1b75b50475a53d3bb802a3e64c15e6.jpg"
+              alt="Discover"
+              className="w-full h-full object-cover"
+            />
+          )}
 
           {/* Icons */}
           <div className="absolute bottom-3 right-3 flex gap-3">
@@ -30,15 +63,21 @@ const Discover = () => {
         </div>
       </div>
 
-      {/* Search Input */}
-      <div className="flex items-center gap-2 mt-4 ">
+      {/* Input & Generate Button */}
+      <div className="flex items-center gap-2 mt-4">
         <input
           type="text"
-          placeholder="This is Discover what you want to generate"
+          placeholder="Enter image URL to generate"
+          value={imageUrl}
+          onChange={(e) => setImageUrl(e.target.value)}
           className="flex-1 p-2 text-sm rounded-md border border-gray-600 bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
-        <button className="px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">
-          Generate
+        <button
+          onClick={handleGenerate}
+          disabled={loading}
+          className="px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition disabled:bg-gray-500"
+        >
+          {loading ? "Generating..." : "Generate"}
         </button>
       </div>
     </div>
