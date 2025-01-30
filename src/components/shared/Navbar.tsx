@@ -40,7 +40,7 @@ const Navbar = () => {
 
         {/* Desktop Navbar */}
         <nav className="hidden lg:flex space-x-6">
-          <Link href="/" className="text-gray-900 dark:text-white">
+          <Link href="/discover" className="text-gray-900 dark:text-white">
             <Home size={20} className="inline mr-2" />
             Discover
           </Link>
