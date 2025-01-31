@@ -67,7 +67,19 @@ const Navbar = () => {
     };
   }, []);
 
-  const handleSubmit = async (values: {
+  // login
+
+  // Define the validation schema
+  const validationLoginSchema = Yup.object({
+    email: Yup.string()
+      .email("Invalid email address") // Email should be in valid format
+      .required("Email is required"), // Email is required
+    password: Yup.string()
+      .min(4, "Password must be at least 4 characters") // Minimum length for password
+      .required("Password is required"), // Password is required
+  });
+
+  const handleSignUpSubmit = async (values: {
     name: string;
     email: string;
     password: string;
@@ -95,6 +107,34 @@ const Navbar = () => {
     } catch (error) {
       // Catch any errors, such as network issues
       console.error("Error during sign-up:", error);
+      toast.error("An unexpected error occurred.");
+    }
+  };
+
+  const handleLoginSubmit = async (values: {
+    email: string;
+    password: string;
+  }) => {
+    console.log("Login Values:", values);
+
+    try {
+      // Send POST request to create user
+      const response = await axiosInstance.post("/login", {
+        email: values.email,
+        password: values.password,
+      });
+
+      // If the request was successful, show success toast
+      if (response.status === 200) {
+        toast.success("login successfully!");
+        setIsFormOpen(false);
+      } else {
+        // Handle error if response status is not 200 (optional)
+        toast.error(response.data.message || "Something went wrong!");
+      }
+    } catch (error) {
+      // Catch any errors, such as network issues
+      console.error("Error during login-in:", error);
       toast.error("An unexpected error occurred.");
     }
   };
@@ -224,11 +264,8 @@ const Navbar = () => {
             <TabsContent value="login">
               <Formik
                 initialValues={{ email: "", password: "" }}
-                validationSchema={validationSchema}
-                onSubmit={(values) => {
-                  console.log("Login Values:", values);
-                  // Handle login submission
-                }}
+                validationSchema={validationLoginSchema}
+                onSubmit={handleLoginSubmit}
               >
                 {({ errors, touched }) => (
                   <Form className="space-y-4">
@@ -242,6 +279,7 @@ const Navbar = () => {
                     {errors.email && touched.email && (
                       <div className="text-red-500">{errors.email}</div>
                     )}
+
                     <div className="relative">
                       <Field
                         name="password"
@@ -265,6 +303,7 @@ const Navbar = () => {
                     {errors.password && touched.password && (
                       <div className="text-red-500">{errors.password}</div>
                     )}
+
                     <Button className="w-full" type="submit">
                       Login
                     </Button>
@@ -283,7 +322,7 @@ const Navbar = () => {
                   confirmPassword: "",
                 }}
                 validationSchema={validationSchema}
-                onSubmit={handleSubmit}
+                onSubmit={handleSignUpSubmit}
               >
                 {({ errors, touched }) => (
                   <Form className="space-y-4">
