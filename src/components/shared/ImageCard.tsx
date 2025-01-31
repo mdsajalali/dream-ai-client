@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { toast } from "sonner";
-import { Download, Share2, Copy, Check, Heart } from "lucide-react";
+import { Download, Share2, Copy, Check, Heart, CalendarIcon, ClockIcon } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -71,7 +71,25 @@ const ImageCard = ({ image }: ImageCardProps) => {
       />
       <div className="mt-3 flex items-center justify-between">
         <p className="text-sm text-gray-600">Created by: {image.creator}</p>
-        <p className="text-sm text-gray-500">{image.createdAt}</p>
+        <div className="flex items-center gap-4 text-gray-500 text-sm">
+          {/* Date with Icon */}
+          <div className="flex items-center gap-1">
+            <CalendarIcon size={15} />
+            <span>{new Date(image.createdAt).toLocaleDateString()}</span>
+          </div>
+
+          {/* Time with Icon */}
+          <div className="flex items-center gap-1">
+            <ClockIcon size={15} />
+            <span>
+              {new Date(image.createdAt).toLocaleTimeString([], {
+                hour: "2-digit",
+                minute: "2-digit",
+                hour12: true,
+              })}
+            </span>
+          </div>
+        </div>
       </div>
       <div>
         <p className="text-sm text-gray-600">{image.prompt}</p>
