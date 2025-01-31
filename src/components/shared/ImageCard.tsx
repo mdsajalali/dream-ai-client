@@ -1,8 +1,16 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import { Download, Share2, Copy, Check, Heart, CalendarIcon, ClockIcon } from "lucide-react";
+import {
+  Download,
+  Share2,
+  Copy,
+  Check,
+  Heart,
+  CalendarIcon,
+  ClockIcon,
+} from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -62,6 +70,32 @@ const ImageCard = ({ image }: ImageCardProps) => {
     )}`,
   };
 
+  // FavList
+  const [favList, setFavList] = useState<string[]>([]);
+
+  useEffect(() => {
+    const storedFavList = JSON.parse(localStorage.getItem("favList") || "[]");
+    setFavList(storedFavList);
+  }, []);
+
+  const handleFavList = (id: string) => {
+    let storedFavList = JSON.parse(localStorage.getItem("favList") || "[]");
+
+    if (storedFavList.includes(id)) {
+      storedFavList = storedFavList.filter((favId: string) => favId !== id);
+      toast.error("Removed from favorites", { duration: 1500 });
+    } else {
+      storedFavList.push(id);
+      toast.success("Added to favorites", { duration: 1500 });
+    }
+
+    // Update localStorage and state
+    localStorage.setItem("favList", JSON.stringify(storedFavList));
+    setFavList([...storedFavList]);
+  };
+
+  const isFav = favList.includes(image?._id);
+
   return (
     <div key={image._id} className="bg-white p-4 rounded-lg shadow-lg">
       <img
@@ -110,7 +144,17 @@ const ImageCard = ({ image }: ImageCardProps) => {
             <Copy className="w-5 h-5 text-gray-600 hover:text-black" />
           )}
         </div>
-        <Heart className="w-5 h-5 cursor-pointer text-gray-600 hover:text-red-500" />
+
+        <div
+          className="cursor-pointer"
+          onClick={() => handleFavList(image?._id)}
+        >
+          {isFav ? (
+            <Heart className="w-5 h-5 text-red-500" fill="red" />
+          ) : (
+            <Heart className="w-5 h-5 text-gray-600 hover:text-red-500" />
+          )}
+        </div>
       </div>
 
       {/* Share Modal */}
