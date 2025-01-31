@@ -20,6 +20,7 @@ import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
 import { toast } from "sonner";
 import axiosInstance from "@/utils/axiosInstance";
+import { useAuth } from "@/context/AuthContext";
 
 // Form validation schema
 const validationSchema = Yup.object({
@@ -45,6 +46,10 @@ const Navbar = () => {
   const [activeTab, setActiveTab] = useState("login");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  const { login, user, logout } = useAuth();
+
+  console.log("user", user);
 
   const toggleSidebar = () => setIsOpen(!isOpen);
 
@@ -126,6 +131,9 @@ const Navbar = () => {
 
       // If the request was successful, show success toast
       if (response.status === 200) {
+        const { token } = response.data;
+
+        login(token);
         toast.success("login successfully!");
         setIsFormOpen(false);
       } else {
@@ -138,6 +146,10 @@ const Navbar = () => {
       toast.error("An unexpected error occurred.");
     }
   };
+
+   const handleLogout = () => {
+     logout();
+   };
 
   return (
     <header className="bg-white shadow-md dark:bg-gray-800">
@@ -163,13 +175,23 @@ const Navbar = () => {
             <Heart size={20} className="inline mr-2" />
             Favorites
           </Link>
-          <div
-            onClick={() => setIsFormOpen(true)}
-            className="text-gray-900 cursor-pointer dark:text-white flex items-center"
-          >
-            <LogIn size={20} className="inline mr-2" />
-            Login
-          </div>
+          {user ? (
+            <div
+              onClick={handleLogout}
+              className="text-gray-900 cursor-pointer dark:text-white flex items-center"
+            >
+              <LogIn size={20} className="inline mr-2" />
+              LogOut
+            </div>
+          ) : (
+            <div
+              onClick={() => setIsFormOpen(true)}
+              className="text-gray-900 cursor-pointer dark:text-white flex items-center"
+            >
+              <LogIn size={20} className="inline mr-2" />
+              Login
+            </div>
+          )}
         </nav>
 
         {/* Mobile Menu Icon */}

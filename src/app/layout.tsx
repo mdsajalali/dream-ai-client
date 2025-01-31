@@ -5,6 +5,7 @@ import { Inter } from "next/font/google";
 import Navbar from "@/components/shared/Navbar";
 import Footer from "@/components/shared/Footer";
 import { Toaster } from "sonner";
+import { AuthProvider } from "@/context/AuthContext";
 
 const inter = Inter({
   weight: "400",
@@ -24,11 +25,13 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.className}>
       <body>
-        {/* Toast */}
-        <Toaster position="top-center" />
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
+        <AuthProvider>
+          {/* Toast */}
+          <Toaster position="top-center" />
+          <Navbar />
+          <main>{children}</main>
+          <Footer />
+        </AuthProvider>
       </body>
     </html>
   );
