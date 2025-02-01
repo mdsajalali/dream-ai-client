@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { toast } from "sonner";
 import {
   Download,
@@ -20,14 +20,19 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { ImageCardProps } from "@/types/index.type";
+import axiosInstance from "@/utils/axiosInstance";
+import { useAuth } from "@/context/AuthContext";
 
 const ImageCard = ({ image }: ImageCardProps) => {
   const [copied, setCopied] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const { user } = useAuth();
+
+  console.log("user", user);
 
   const handleCopy = async () => {
     try {
-      await navigator.clipboard.writeText(image.imageUrl);
+      await navigator.clipboard.writeText(image?.imageUrl);
       setCopied(true);
       toast.success("Copied!");
       setTimeout(() => setCopied(false), 2000);
@@ -38,12 +43,12 @@ const ImageCard = ({ image }: ImageCardProps) => {
 
   const handleDownload = async () => {
     try {
-      const response = await fetch(image.imageUrl);
+      const response = await fetch(image?.imageUrl);
       const blob = await response.blob();
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = `dreamai-${image._id}.jpg`;
+      a.download = `dreamai-${image?._id}.jpg`;
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
@@ -56,67 +61,108 @@ const ImageCard = ({ image }: ImageCardProps) => {
 
   const shareLinks = {
     facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-      image.imageUrl
+      image?.imageUrl
     )}`,
     twitter: `https://twitter.com/intent/tweet?url=${encodeURIComponent(
-      image.imageUrl
+      image?.imageUrl
     )}`,
     linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
-      image.imageUrl
+      image?.imageUrl
     )}`,
     instagram: `https://www.instagram.com/`,
     whatsapp: `https://api.whatsapp.com/send?text=${encodeURIComponent(
-      image.imageUrl
+      image?.imageUrl
     )}`,
   };
 
-  // FavList
-  const [favList, setFavList] = useState<string[]>([]);
+  // const userId = "679cb01b4f8e1a1a7919e1f7";
 
-  useEffect(() => {
-    const storedFavList = JSON.parse(localStorage.getItem("favList") || "[]");
-    setFavList(storedFavList);
-  }, []);
+  // // FavList
+  // const [favList, setFavList] = useState<string[]>([]);
 
-  const handleFavList = (id: string) => {
-    let storedFavList = JSON.parse(localStorage.getItem("favList") || "[]");
+  // useEffect(() => {
+  //   const storedFavList = JSON.parse(localStorage.getItem("favList") || "[]");
+  //   setFavList(storedFavList);
+  // }, []);
 
-    if (storedFavList.includes(id)) {
-      storedFavList = storedFavList.filter((favId: string) => favId !== id);
-      toast.error("Removed from favorites", { duration: 1500 });
-    } else {
-      storedFavList.push(id);
-      toast.success("Added to favorites", { duration: 1500 });
+  // const handleFavList = async (id: string) => {
+  //   let storedFavList = JSON.parse(localStorage.getItem("favList") || "[]");
+
+  //   if (storedFavList.includes(id)) {
+  //     storedFavList = storedFavList.filter((favId: string) => favId !== id);
+  //     toast.error("Removed from favorites", { duration: 1500 });
+
+  //     try {
+  //       await axiosInstance.delete(`/favorite/${userId}`);
+  //     } catch (error) {
+  //       console.error("Error removing from favorites:", error);
+  //     }
+  //   } else {
+  //     storedFavList.push(id);
+  //     toast.success("Added to favorites", { duration: 1500 });
+
+  //     try {
+  //       await axiosInstance.post("/favorite", {
+  //         userId: userId,
+  //         imageId: image?._id,
+  //       });
+  //     } catch (error) {
+  //       console.error("Error adding to favorites:", error);
+  //     }
+  //   }
+
+  //   localStorage.setItem("favList", JSON.stringify(storedFavList));
+  //   setFavList([...storedFavList]);
+  // };
+
+  // const isFav = favList.includes(image?._id);
+
+  const [isFav, setIsFav] = useState(false);
+
+  const handleFavList = async (imageId: string) => {
+    try {
+      if (isFav) {
+        await axiosInstance.delete(`/favorite/${imageId}`);
+        toast.error("Removed from favorites", { duration: 1500 });
+        setIsFav(false);
+      } else {
+        const response = await axiosInstance.post("/favorite", {
+          userId: "679cb01b4f8e1a1a7919e1f7",
+          imageId: imageId,
+        });
+
+        if (response.status === 201) {
+          toast.success("Added to favorites", { duration: 1500 });
+          setIsFav(true);
+        }
+      }
+    } catch (error) {
+      console.error("Error updating favorites:", error);
+      toast.error("Failed to update favorites");
     }
-
-    // Update localStorage and state
-    localStorage.setItem("favList", JSON.stringify(storedFavList));
-    setFavList([...storedFavList]);
   };
 
-  const isFav = favList.includes(image?._id);
-
   return (
-    <div key={image._id} className="bg-white p-4 rounded-lg shadow-lg">
+    <div className="bg-white p-4 rounded-lg shadow-lg">
       <img
         src={image?.imageUrl}
         alt="Generated"
         className="w-full h-48 object-cover rounded-lg"
       />
       <div className="mt-3 flex items-center justify-between">
-        <p className="text-sm text-gray-600">Created by: {image.creator}</p>
+        <p className="text-sm text-gray-600">Created by: {image?.creator}</p>
         <div className="flex items-center gap-4 text-gray-500 text-sm">
           {/* Date with Icon */}
           <div className="flex items-center gap-1">
             <CalendarIcon size={15} />
-            <span>{new Date(image.createdAt).toLocaleDateString()}</span>
+            <span>{new Date(image?.createdAt).toLocaleDateString()}</span>
           </div>
 
           {/* Time with Icon */}
           <div className="flex items-center gap-1">
             <ClockIcon size={15} />
             <span>
-              {new Date(image.createdAt).toLocaleTimeString([], {
+              {new Date(image?.createdAt).toLocaleTimeString([], {
                 hour: "2-digit",
                 minute: "2-digit",
                 hour12: true,
@@ -126,7 +172,7 @@ const ImageCard = ({ image }: ImageCardProps) => {
         </div>
       </div>
       <div>
-        <p className="text-sm text-gray-600">{image.prompt}</p>
+        <p className="text-sm text-gray-600">{image?.prompt}</p>
       </div>
       <div className="flex items-center gap-4 mt-3">
         <Download
@@ -165,7 +211,7 @@ const ImageCard = ({ image }: ImageCardProps) => {
           </DialogHeader>
           <div className="flex flex-col gap-3">
             <Input
-              value={image.imageUrl}
+              value={image?.imageUrl}
               readOnly
               className="cursor-pointer"
               onClick={handleCopy}

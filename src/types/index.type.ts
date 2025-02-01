@@ -9,3 +9,8 @@ export interface SingleImageCardProps {
   createdAt: string;
   prompt: string;
 }
+
+export interface FavoriteProps {
+  _id: string;
+  image: SingleImageCardProps;
+}
