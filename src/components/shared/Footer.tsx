@@ -1,6 +1,7 @@
 import React from "react";
 import { Facebook, Twitter, Linkedin } from "lucide-react";
 import Container from "./Container";
+import Link from "next/link";
 
 const Footer = () => {
   return (
@@ -18,7 +19,7 @@ const Footer = () => {
           {/* Footer Bottom */}
           <div className="flex flex-col md:flex-row justify-between items-center border-t border-gray-700 pt-6">
             {/* Logo & Copyright */}
-            <p className="text-lg font-bold">DreamAI</p>
+            <Link href="/" className="text-lg font-bold">DreamAI</Link>
             <p className="text-sm mt-2 md:mt-0">
               © {new Date().getFullYear()} DreamAI. All rights reserved.
             </p>

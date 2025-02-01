@@ -35,11 +35,11 @@ const Navbar = () => {
     <header className="bg-white shadow-md dark:bg-gray-800">
       <div className="max-w-[1200px] mx-auto px-4 lg:px-0 flex items-center justify-between py-4">
         {/* Logo */}
-        <div className="flex items-center space-x-2">
+        <Link href="/" className="flex items-center space-x-2">
           <span className="text-2xl font-semibold text-gray-900 dark:text-white">
             DreamAI
           </span>
-        </div>
+        </Link>
 
         {/* Desktop Navbar */}
         <nav className="hidden lg:flex space-x-6">

@@ -19,6 +19,14 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { ImageCardProps } from "@/types/index.type";
+import LightGallery from "lightgallery/react";
+import lgZoom from "lightgallery/plugins/zoom";
+import lgThumbnail from "lightgallery/plugins/thumbnail";
+
+// Import styles
+import "lightgallery/css/lightgallery.css";
+import "lightgallery/css/lg-zoom.css";
+import "lightgallery/css/lg-thumbnail.css";
 
 const ImageCard = ({ image }: ImageCardProps) => {
   const [copied, setCopied] = useState(false);
@@ -70,14 +78,23 @@ const ImageCard = ({ image }: ImageCardProps) => {
   };
 
   return (
-    <div className="bg-white p-4 rounded-lg shadow-lg">
-      <img
-        src={image?.imageUrl}
-        alt="Generated"
-        className="w-full h-48 object-cover rounded-lg"
-      />
-      <div className="mt-3 flex items-center justify-between">
-        <p className="text-sm text-gray-600">Created by: {image?.creator}</p>
+    <div className="bg-white flex flex-col p-4 rounded-lg shadow-lg">
+      <LightGallery plugins={[lgZoom, lgThumbnail]} speed={500}>
+        <a
+          key={image?._id}
+          href={image?.imageUrl}
+          data-src={image?.imageUrl}
+          data-sub-html=" "
+        >
+          <img
+            src={image?.imageUrl}
+            alt="Generated"
+            className="w-full h-48 object-cover rounded-lg"
+          />
+        </a>
+      </LightGallery>
+
+      <div className="mt-3 flex items-center justify-end">
         <div className="flex items-center gap-4 text-gray-500 text-sm">
           {/* Date with Icon */}
           <div className="flex items-center gap-1">
@@ -98,9 +115,9 @@ const ImageCard = ({ image }: ImageCardProps) => {
           </div>
         </div>
       </div>
-      <div>
-        <p className="text-sm text-gray-600">{image?.prompt}</p>
-      </div>
+      <p className="text-sm text-gray-600 mb-auto my-3 line-clamp-2">
+        {image?.prompt}
+      </p>
       <div className="flex items-center gap-4 mt-3">
         <Download
           className="w-5 h-5 cursor-pointer text-gray-600 hover:text-black"
