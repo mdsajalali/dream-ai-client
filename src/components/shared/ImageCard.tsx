@@ -7,7 +7,6 @@ import {
   Share2,
   Copy,
   Check,
-  Heart,
   CalendarIcon,
   ClockIcon,
 } from "lucide-react";
@@ -20,15 +19,10 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { ImageCardProps } from "@/types/index.type";
-import axiosInstance from "@/utils/axiosInstance";
-import { useAuth } from "@/context/AuthContext";
 
 const ImageCard = ({ image }: ImageCardProps) => {
   const [copied, setCopied] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const { user } = useAuth();
-
-  console.log("user", user);
 
   const handleCopy = async () => {
     try {
@@ -73,73 +67,6 @@ const ImageCard = ({ image }: ImageCardProps) => {
     whatsapp: `https://api.whatsapp.com/send?text=${encodeURIComponent(
       image?.imageUrl
     )}`,
-  };
-
-  // const userId = "679cb01b4f8e1a1a7919e1f7";
-
-  // // FavList
-  // const [favList, setFavList] = useState<string[]>([]);
-
-  // useEffect(() => {
-  //   const storedFavList = JSON.parse(localStorage.getItem("favList") || "[]");
-  //   setFavList(storedFavList);
-  // }, []);
-
-  // const handleFavList = async (id: string) => {
-  //   let storedFavList = JSON.parse(localStorage.getItem("favList") || "[]");
-
-  //   if (storedFavList.includes(id)) {
-  //     storedFavList = storedFavList.filter((favId: string) => favId !== id);
-  //     toast.error("Removed from favorites", { duration: 1500 });
-
-  //     try {
-  //       await axiosInstance.delete(`/favorite/${userId}`);
-  //     } catch (error) {
-  //       console.error("Error removing from favorites:", error);
-  //     }
-  //   } else {
-  //     storedFavList.push(id);
-  //     toast.success("Added to favorites", { duration: 1500 });
-
-  //     try {
-  //       await axiosInstance.post("/favorite", {
-  //         userId: userId,
-  //         imageId: image?._id,
-  //       });
-  //     } catch (error) {
-  //       console.error("Error adding to favorites:", error);
-  //     }
-  //   }
-
-  //   localStorage.setItem("favList", JSON.stringify(storedFavList));
-  //   setFavList([...storedFavList]);
-  // };
-
-  // const isFav = favList.includes(image?._id);
-
-  const [isFav, setIsFav] = useState(false);
-
-  const handleFavList = async (imageId: string) => {
-    try {
-      if (isFav) {
-        await axiosInstance.delete(`/favorite/${imageId}`);
-        toast.error("Removed from favorites", { duration: 1500 });
-        setIsFav(false);
-      } else {
-        const response = await axiosInstance.post("/favorite", {
-          userId: "679cb01b4f8e1a1a7919e1f7",
-          imageId: imageId,
-        });
-
-        if (response.status === 201) {
-          toast.success("Added to favorites", { duration: 1500 });
-          setIsFav(true);
-        }
-      }
-    } catch (error) {
-      console.error("Error updating favorites:", error);
-      toast.error("Failed to update favorites");
-    }
   };
 
   return (
@@ -188,17 +115,6 @@ const ImageCard = ({ image }: ImageCardProps) => {
             <Check className="w-5 h-5 text-green-500" />
           ) : (
             <Copy className="w-5 h-5 text-gray-600 hover:text-black" />
-          )}
-        </div>
-
-        <div
-          className="cursor-pointer"
-          onClick={() => handleFavList(image?._id)}
-        >
-          {isFav ? (
-            <Heart className="w-5 h-5 text-red-500" fill="red" />
-          ) : (
-            <Heart className="w-5 h-5 text-gray-600 hover:text-red-500" />
           )}
         </div>
       </div>
