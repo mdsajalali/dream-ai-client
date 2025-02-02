@@ -6,6 +6,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Menu, X, Home, Image as ImageIcon } from "lucide-react";
 import Link from "next/link";
+import DarkModeToggle from "../core/theme";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -51,6 +52,8 @@ const Navbar = () => {
             <ImageIcon size={20} className="inline mr-2" />
             Images
           </Link>
+           {/* Theme */}
+           <DarkModeToggle />
         </nav>
 
         {/* Mobile Menu Icon */}

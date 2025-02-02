@@ -1,37 +1,48 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Sun, Moon } from "lucide-react";
 
 const DarkModeToggle = () => {
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState<boolean | null>(null);
 
   useEffect(() => {
-    // Check the user's system preference on initial load
-    const isDarkMode = window.matchMedia(
-      "(prefers-color-scheme: dark)"
-    ).matches;
-    setIsDark(isDarkMode);
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme) {
+      setIsDark(savedTheme === "dark");
+    } else {
+      const prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      ).matches;
+      setIsDark(prefersDark);
+    }
   }, []);
 
   useEffect(() => {
-    // Toggle dark mode class on <html> element
-    if (isDark) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
+    if (isDark !== null) {
+      if (isDark) {
+        document.documentElement.classList.add("dark");
+        localStorage.setItem("theme", "dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+        localStorage.setItem("theme", "light");
+      }
     }
   }, [isDark]);
 
+  if (isDark === null) return null;
+
   return (
-    <div>
-      <button
-        onClick={() => setIsDark((prev) => !prev)}
-        className="p-2 bg-gray-800 text-white rounded"
-      >
-        Toggle Dark Mode
-      </button>
-      <p className="text-black dark:text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut impedit quasi illum sequi adipisci? Fugiat porro dolores architecto officia illo.</p>
-    </div>
+    <button
+      onClick={() => setIsDark(!isDark)}
+      className="p-2 rounded-full bg-gray-200 dark:bg-gray-800 transition-all"
+    >
+      {isDark ? (
+        <Sun className="w-6 h-6 text-yellow-500" />
+      ) : (
+        <Moon className="w-6 h-6 text-gray-900" />
+      )}
+    </button>
   );
 };
 
