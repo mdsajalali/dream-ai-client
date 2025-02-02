@@ -43,17 +43,23 @@ const Navbar = () => {
         </Link>
 
         {/* Desktop Navbar */}
-        <nav className="hidden lg:flex space-x-6">
-          <Link href="/discover" className="text-gray-900 dark:text-white">
-            <Home size={20} className="inline mr-2" />
+        <nav className="hidden lg:flex justify-center items-center space-x-6">
+          <Link
+            href="/discover"
+            className="text-gray-900 dark:text-white flex items-center"
+          >
+            <Home size={18} className="inline mr-2" />
             Discover
           </Link>
-          <Link href="/images" className="text-gray-900 dark:text-white">
-            <ImageIcon size={20} className="inline mr-2" />
+          <Link
+            href="/images"
+            className="text-gray-900 flex items-center dark:text-white"
+          >
+            <ImageIcon size={18} className="inline mr-2" />
             Images
           </Link>
-           {/* Theme */}
-           <DarkModeToggle />
+          {/* Theme */}
+          <DarkModeToggle />
         </nav>
 
         {/* Mobile Menu Icon */}
@@ -103,6 +109,7 @@ const Navbar = () => {
               <ImageIcon size={20} className="inline mr-2" />
               Images
             </Link>
+            <DarkModeToggle />
           </nav>
         </div>
       </div>
