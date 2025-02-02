@@ -15,10 +15,10 @@ import {
 } from "@/components/ui/pagination";
 
 const ImagesPage = () => {
-  const [images, setImages] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
+  const [images, setImages] = useState<SingleImageCardProps[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [totalPages, setTotalPages] = useState<number>(1);
 
   useEffect(() => {
     setLoading(true);
@@ -32,6 +32,30 @@ const ImagesPage = () => {
       .finally(() => setLoading(false));
   }, [currentPage]);
 
+  // Function to generate pagination numbers (Only 4 pages shown, others as dots)
+  const generatePaginationNumbers = (): (number | string)[] => {
+    const pages: (number | string)[] = [];
+    const maxVisiblePages = 4;
+
+    if (totalPages <= maxVisiblePages) {
+      for (let i = 1; i <= totalPages; i++) pages.push(i);
+    } else {
+      pages.push(1);
+
+      if (currentPage > 2) pages.push("...");
+
+      const start = Math.max(2, currentPage - 1);
+      const end = Math.min(totalPages - 1, currentPage + 1);
+
+      for (let i = start; i <= end; i++) pages.push(i);
+
+      if (currentPage < totalPages - 2) pages.push("...");
+
+      pages.push(totalPages);
+    }
+    return pages;
+  };
+
   return (
     <Container>
       <div className="p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
@@ -44,7 +68,7 @@ const ImagesPage = () => {
                   className="bg-gray-200 w-full h-64 rounded-md animate-pulse"
                 />
               ))
-          : images?.map((image: SingleImageCardProps) => (
+          : images?.map((image) => (
               <ImageCard key={image?._id} image={image} />
             ))}
       </div>
@@ -52,14 +76,13 @@ const ImagesPage = () => {
       {/* Pagination Controls */}
       <div className="flex justify-center mt-6 mb-10">
         <Pagination>
-          <PaginationContent>
+          <PaginationContent className="gap-2">
             {/* Previous Button */}
             <PaginationItem>
               <PaginationPrevious
                 href="#"
                 onClick={(e) => {
-                  if (currentPage === 1)
-                    e.preventDefault(); // Prevent navigation
+                  if (currentPage === 1) e.preventDefault();
                   else setCurrentPage((prev) => Math.max(prev - 1, 1));
                 }}
                 className={
@@ -68,28 +91,29 @@ const ImagesPage = () => {
               />
             </PaginationItem>
 
-            {/* Page Numbers */}
-            {[...Array(totalPages)].map((_, index) => {
-              const pageNumber = index + 1;
-              return (
-                <PaginationItem key={pageNumber}>
-                  <PaginationLink
-                    href="#"
-                    isActive={pageNumber === currentPage}
-                    onClick={() => setCurrentPage(pageNumber)}
-                  >
-                    {pageNumber}
-                  </PaginationLink>
+            {/* Page Numbers with Ellipsis - Hidden on Extra Small Screens */}
+            <div className="hidden sm:flex gap-2">
+              {generatePaginationNumbers().map((page, index) => (
+                <PaginationItem key={index}>
+                  {typeof page === "number" ? (
+                    <PaginationLink
+                      href="#"
+                      isActive={page === currentPage}
+                      onClick={() => setCurrentPage(page)}
+                    >
+                      {page}
+                    </PaginationLink>
+                  ) : (
+                    <PaginationEllipsis />
+                  )}
                 </PaginationItem>
-              );
-            })}
+              ))}
+            </div>
 
-            {/* Ellipsis for Large Page Counts */}
-            {totalPages > 5 && (
-              <PaginationItem>
-                <PaginationEllipsis />
-              </PaginationItem>
-            )}
+            {/* Mobile View - Show Only Current Page */}
+            <div className="sm:hidden text-sm font-medium px-3">
+              Page {currentPage} of {totalPages}
+            </div>
 
             {/* Next Button */}
             <PaginationItem>
