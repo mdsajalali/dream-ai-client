@@ -33,7 +33,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div className="bg-[url('/images/banner-bg.png')] bg-cover bg-center min-h-screen w-full">
+    <div className="bg-[url('/images/banner-bg.png')] bg-cover bg-center min-h-screen w-full relative">
       <header className="bg-[url('/images/banner-gradient-shape.svg')] z-[999] bg-cover bg-center min-h-screen w-full">
         <div className="max-w-[1200px] mx-auto px-4 lg:px-0 flex items-center justify-between py-4">
           {/* Logo */}
