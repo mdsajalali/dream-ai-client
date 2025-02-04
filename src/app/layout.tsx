@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 import { Inter } from "next/font/google";
-import Navbar from "@/components/shared/Navbar";
 import Footer from "@/components/shared/Footer";
 import { Toaster } from "sonner";
+import RoutePathname from "@/components/core/RoutePathname";
 
 const inter = Inter({
   weight: "400",
@@ -26,7 +26,7 @@ export default function RootLayout({
       <body>
         {/* Toast */}
         <Toaster position="top-center" />
-        <Navbar />
+        <RoutePathname />
         <main>{children}</main>
         <Footer />
       </body>
