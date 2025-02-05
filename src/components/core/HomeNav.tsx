@@ -124,6 +124,7 @@ const HomeNav = () => {
           </div>
         </div>
       </header>
+      {/* Hero section */}
       <Hero />
     </div>
   );
