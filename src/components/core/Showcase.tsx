@@ -50,49 +50,32 @@ const showcase = [
 
 const ShowCase = () => {
   return (
-    <section className="absolute top-[50%] right-0 left-0">
+    <section className="">
       <>
         <div>
           <Swiper
             modules={[Navigation, Autoplay]}
-            spaceBetween={35}
-            slidesPerView={1}
+            spaceBetween={0}
+            slidesPerView={"auto"}
             loop={true}
-            autoplay={{ delay: 800 }}
+            autoplay={{ delay: 0, reverseDirection: true }}
+            speed={3500}
             navigation={{ prevEl: ".aiNext", nextEl: ".aiPrev" }}
-            breakpoints={{
-              350: {
-                slidesPerView: 1.2,
-                spaceBetween: 10,
-              },
-              640: {
-                slidesPerView: 2,
-                spaceBetween: 10,
-              },
-              768: {
-                slidesPerView: 2,
-                spaceBetween: 20,
-              },
-              1024: {
-                slidesPerView: 3,
-                spaceBetween: 20,
-              },
-              1170: {
-                slidesPerView: 4,
-                spaceBetween: 25,
-              },
-            }}
           >
             {showcase?.map((item) => (
-              <SwiperSlide key={item.id}>
-                <div className="  rounded-md p-2 shadow-sm transition-shadow hover:shadow-md">
+              <SwiperSlide key={item.id} className="sliderImageWrapper">
+                <div
+                  className={`rounded-md p-2 shadow-sm transition-shadow hover:shadow-md ${
+                    item.id % 2 == 0 ? "translate-y-10" : ""
+                  }`}
+                >
                   <div className="relative">
-                    <div className="relative mx-auto aspect-square rounded-md ">
+                    <div className="relative mx-auto aspect-[3/4] rounded-md ">
                       <Image
                         src={item.img}
                         alt="Image"
                         fill
-                        className="mx-auto h-full w-full rounded-md object-contain object-bottom"
+                        className="object-cover rounded-md   "
                       />
                     </div>
                   </div>
