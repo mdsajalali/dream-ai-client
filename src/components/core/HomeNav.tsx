@@ -7,6 +7,7 @@ import { Menu, X, Home, Image as ImageIcon } from "lucide-react";
 import Link from "next/link";
 import DarkModeToggle from "./theme";
 import Hero from "./Hero";
+import ShowCase from "./Showcase";
 
 const HomeNav = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -126,6 +127,8 @@ const HomeNav = () => {
       </header>
       {/* Hero section */}
       <Hero />
+      {/* Showcase */}
+      <ShowCase />
     </div>
   );
 };
