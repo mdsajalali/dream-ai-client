@@ -1,8 +1,8 @@
 import AiImages from "@/components/core/AiImages";
 import AiTexts from "@/components/core/AiTexts";
-import Faq from "@/components/core/Faq";
 import React from "react";
 import About from "@/components/core/About";
+import Workflow from "@/components/core/Workflow";
 
 const page = () => {
   return (
@@ -13,8 +13,8 @@ const page = () => {
       <About />
       {/* AiImage */}
       <AiImages />
-      {/* Faq */}
-      <Faq />
+      {/* Work flow */}
+      <Workflow />
     </>
   );
 };
