@@ -63,22 +63,22 @@ const ImageCard = ({ image }: ImageCardProps) => {
 
   const shareLinks = {
     facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-      image?.imageUrl
+      image?.imageUrl,
     )}`,
     twitter: `https://twitter.com/intent/tweet?url=${encodeURIComponent(
-      image?.imageUrl
+      image?.imageUrl,
     )}`,
     linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
-      image?.imageUrl
+      image?.imageUrl,
     )}`,
     instagram: `https://www.instagram.com/`,
     whatsapp: `https://api.whatsapp.com/send?text=${encodeURIComponent(
-      image?.imageUrl
+      image?.imageUrl,
     )}`,
   };
 
   return (
-    <div className="bg-white flex flex-col p-4 rounded-lg shadow-lg">
+    <div className="flex flex-col rounded-lg bg-white p-4 shadow-lg">
       <LightGallery plugins={[lgZoom, lgThumbnail]} speed={500}>
         <a
           key={image?._id}
@@ -89,13 +89,13 @@ const ImageCard = ({ image }: ImageCardProps) => {
           <img
             src={image?.imageUrl}
             alt="Generated"
-            className="w-full h-48 object-cover rounded-lg"
+            className="h-48 w-full rounded-lg object-cover"
           />
         </a>
       </LightGallery>
 
       <div className="mt-3 flex items-center justify-end">
-        <div className="flex items-center gap-4 text-gray-500 text-sm">
+        <div className="flex items-center gap-4 text-sm text-gray-500">
           {/* Date with Icon */}
           <div className="flex items-center gap-1">
             <CalendarIcon size={15} />
@@ -115,23 +115,23 @@ const ImageCard = ({ image }: ImageCardProps) => {
           </div>
         </div>
       </div>
-      <p className="text-sm text-gray-600 mb-auto my-3 line-clamp-2">
+      <p className="my-3 mb-auto line-clamp-2 text-sm text-gray-600">
         {image?.prompt}
       </p>
-      <div className="flex items-center gap-4 mt-3">
+      <div className="mt-3 flex items-center gap-4">
         <Download
-          className="w-5 h-5 cursor-pointer text-gray-600 hover:text-black"
+          className="h-5 w-5 cursor-pointer text-gray-600 hover:text-black"
           onClick={handleDownload}
         />
         <Share2
-          className="w-5 h-5 cursor-pointer text-gray-600 hover:text-black"
+          className="h-5 w-5 cursor-pointer text-gray-600 hover:text-black"
           onClick={() => setIsOpen(true)}
         />
         <div onClick={handleCopy} className="cursor-pointer">
           {copied ? (
-            <Check className="w-5 h-5 text-green-500" />
+            <Check className="h-5 w-5 text-green-500" />
           ) : (
-            <Copy className="w-5 h-5 text-gray-600 hover:text-black" />
+            <Copy className="h-5 w-5 text-gray-600 hover:text-black" />
           )}
         </div>
       </div>
@@ -152,7 +152,7 @@ const ImageCard = ({ image }: ImageCardProps) => {
             <Button className="w-full" onClick={handleCopy}>
               {copied ? "Copied!" : "Copy Link"}
             </Button>
-            <div className="flex justify-between mt-2">
+            <div className="mt-2 flex justify-between">
               <a
                 href={shareLinks.facebook}
                 target="_blank"
@@ -236,7 +236,7 @@ const ImageCard = ({ image }: ImageCardProps) => {
                   fill="currentColor"
                   stroke-width="0"
                   viewBox="0 0 448 512"
-                  className="text-pink-600  "
+                  className="text-pink-600"
                   width="24"
                   height="24"
                   xmlns="http://www.w3.org/2000/svg"

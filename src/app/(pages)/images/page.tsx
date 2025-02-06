@@ -58,14 +58,14 @@ const ImagesPage = () => {
 
   return (
     <Container>
-      <div className="p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 gap-6 p-6 sm:grid-cols-2 md:grid-cols-3">
         {loading
           ? Array(9)
               .fill(0)
               .map((_, index) => (
                 <div
                   key={index}
-                  className="bg-gray-200 w-full h-64 rounded-md animate-pulse"
+                  className="h-64 w-full animate-pulse rounded-md bg-gray-200"
                 />
               ))
           : images?.map((image) => (
@@ -74,7 +74,7 @@ const ImagesPage = () => {
       </div>
 
       {/* Pagination Controls */}
-      <div className="flex justify-center mt-6 mb-10">
+      <div className="mb-10 mt-6 flex justify-center">
         <Pagination>
           <PaginationContent className="gap-2">
             {/* Previous Button */}
@@ -92,7 +92,7 @@ const ImagesPage = () => {
             </PaginationItem>
 
             {/* Page Numbers with Ellipsis - Hidden on Extra Small Screens */}
-            <div className="hidden sm:flex gap-2">
+            <div className="hidden gap-2 sm:flex">
               {generatePaginationNumbers().map((page, index) => (
                 <PaginationItem key={index}>
                   {typeof page === "number" ? (
@@ -111,7 +111,7 @@ const ImagesPage = () => {
             </div>
 
             {/* Mobile View - Show Only Current Page */}
-            <div className="sm:hidden text-sm font-medium px-3">
+            <div className="px-3 text-sm font-medium sm:hidden">
               Page {currentPage} of {totalPages}
             </div>
 

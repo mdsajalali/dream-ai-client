@@ -39,7 +39,7 @@ const AiImages = () => {
   return (
     <section className="my-10">
       <Container>
-        <div className=" flex items-center justify-between gap-2 ">
+        <div className="flex items-center justify-between gap-2">
           <div>
             <p className="mb-3 font-semibold uppercase text-primary">
               Create your dream with Ai
@@ -85,13 +85,13 @@ const AiImages = () => {
           >
             {aiImages?.map((item) => (
               <SwiperSlide key={item.id}>
-                <div className=" shadow-sm transition-shadow  ">
-                  <div className="relative w-[290px] h-[350px]  ">
+                <div className="shadow-sm transition-shadow">
+                  <div className="relative h-[350px] w-[290px]">
                     <Image
                       src={item.img}
                       alt={item.ai_name}
                       fill
-                      className="rounded-lg w-full h-full"
+                      className="h-full w-full rounded-lg"
                     />
                   </div>
                 </div>

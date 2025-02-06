@@ -3,55 +3,55 @@ import Container from "../shared/Container";
 import about_one from "../../../public/images/about1.webp";
 import about_two from "../../../public/images/about2.webp";
 import about_three from "../../../public/images/about3.webp";
-import Image from "next/image"; 
+import Image from "next/image";
 import Link from "next/link";
 
 const About = () => {
   return (
     <Container>
-      <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12 py-12 px-6 lg:px-12   dark:bg-gray-900 rounded-lg  ">
+      <div className="flex flex-col items-center gap-8 rounded-lg px-6 py-12 dark:bg-gray-900 lg:flex-row lg:gap-12 lg:px-12">
         {/* Image Section */}
-        <div className="flex  gap-2 sm:gap-4 lg:w-1/2">
-          <div className="relative  w-[340px] sm:w-[400px] sm:h-[495px] h-auto">
+        <div className="flex gap-2 sm:gap-4 lg:w-1/2">
+          <div className="relative h-auto w-[340px] sm:h-[495px] sm:w-[400px]">
             <Image
               src={about_one}
               fill
               alt="About"
-              className="rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 object-cover"
+              className="rounded-lg object-cover shadow-lg transition-transform duration-300 hover:scale-105"
             />
           </div>
-          <div className="flex flex-col sm:gap-4 gap-2">
+          <div className="flex flex-col gap-2 sm:gap-4">
             <Image
               src={about_two}
               width={400}
               height={300}
               alt="About"
-              className="rounded-lg shadow-lg hover:scale-105 transition-transform duration-300"
+              className="rounded-lg shadow-lg transition-transform duration-300 hover:scale-105"
             />
             <Image
               src={about_three}
               width={400}
               height={300}
               alt="About"
-              className="rounded-lg shadow-lg hover:scale-105 transition-transform duration-300"
+              className="rounded-lg shadow-lg transition-transform duration-300 hover:scale-105"
             />
           </div>
         </div>
 
         {/* Content Section */}
-        <div className="lg:w-1/2 text-center lg:text-left">
+        <div className="text-center lg:w-1/2 lg:text-left">
           <h1 className="text-4xl font-bold text-gray-900 dark:text-white">
             WELCOME
           </h1>
-          <h2 className="text-xl text-gray-700 dark:text-gray-300 mt-2">
+          <h2 className="mt-2 text-xl text-gray-700 dark:text-gray-300">
             Easy ways to use AI tools, and tools to build AI.
           </h2>
-          <p className="text-gray-600 dark:text-gray-400 mt-4 leading-relaxed">
+          <p className="mt-4 leading-relaxed text-gray-600 dark:text-gray-400">
             Easy ways to use AI tools, and tools to build AI.Easy ways to use AI
             tools, and tools to build AI.
           </p>
           <Link href="/discover">
-            <button className="mt-6 px-8 py-3 text-lg font-semibold text-black bg-gradient-to-r from-lime-400 to-cyan-500 rounded-full shadow-lg hover:scale-105 transition-transform duration-300">
+            <button className="mt-6 rounded-full bg-gradient-to-r from-lime-400 to-cyan-500 px-8 py-3 text-lg font-semibold text-black shadow-lg transition-transform duration-300 hover:scale-105">
               Get Started
             </button>
           </Link>

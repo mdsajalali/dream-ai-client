@@ -27,7 +27,7 @@ const AiTexts = () => {
         {effects.map((effect) => (
           <div
             key={effect.id}
-            className="mx-4 my-5 bg-white hover:bg-black hover:text-white duration-300 rounded-full text-[14px] font-medium p-2"
+            className="mx-4 my-5 rounded-full bg-white p-2 text-[14px] font-medium duration-300 hover:bg-black hover:text-white"
           >
             {effect.name}
           </div>

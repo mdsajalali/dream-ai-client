@@ -70,12 +70,12 @@ const ShowCase = () => {
                   }`}
                 >
                   <div className="relative">
-                    <div className="relative mx-auto aspect-[3/4] rounded-md ">
+                    <div className="relative mx-auto aspect-[3/4] rounded-md">
                       <Image
                         src={item.img}
                         alt="Image"
                         fill
-                        className="object-cover rounded-md   "
+                        className="rounded-md object-cover"
                       />
                     </div>
                   </div>

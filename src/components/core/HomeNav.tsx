@@ -5,9 +5,9 @@
 import { useState, useEffect, useRef } from "react";
 import { Menu, X, Home, Image as ImageIcon } from "lucide-react";
 import Link from "next/link";
-import DarkModeToggle from "./theme";
 import Hero from "./Hero";
 import ShowCase from "./Showcase";
+import ThemeToggle from "./Theme";
 
 const HomeNav = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -37,15 +37,15 @@ const HomeNav = () => {
   }, []);
 
   return (
-    <div className="bg-[url('/images/banner-bg.png')] bg-cover bg-center  w-full relative">
+    <div className="relative w-full bg-[url('/images/banner-bg.png')] bg-cover bg-center">
       <div className="bg-[url('/images/banner-gradient-shape.svg')] bg-cover bg-center">
-        <header className=" z-[999] w-full">
+        <header className="z-[999] w-full">
           <div
             className={`${
               scrolled ? "bg-black" : "bg-transparent"
-            } fixed top-0 left-0 right-0 w-full transition-all duration-300 z-[999]`}
+            } fixed left-0 right-0 top-0 z-[999] w-full transition-all duration-300`}
           >
-            <div className="max-w-[1200px] mx-auto px-4 lg:px-0 flex items-center justify-between py-4">
+            <div className="mx-auto flex max-w-[1200px] items-center justify-between px-4 py-4 lg:px-0">
               {/* Logo */}
               <Link href="/" className="flex items-center space-x-2">
                 <span className="text-2xl font-semibold text-gray-900 dark:text-white">
@@ -54,27 +54,27 @@ const HomeNav = () => {
               </Link>
 
               {/* Desktop Navbar */}
-              <nav className="hidden lg:flex justify-center items-center space-x-6 ">
+              <nav className="hidden items-center justify-center space-x-6 lg:flex">
                 <Link
                   href="/discover"
-                  className="text-gray-900 dark:text-white flex items-center"
+                  className="flex items-center text-gray-900 dark:text-white"
                 >
-                  <Home size={18} className="inline mr-2" />
+                  <Home size={18} className="mr-2 inline" />
                   Discover
                 </Link>
                 <Link
                   href="/images"
-                  className="text-gray-900 flex items-center dark:text-white"
+                  className="flex items-center text-gray-900 dark:text-white"
                 >
-                  <ImageIcon size={18} className="inline mr-2" />
+                  <ImageIcon size={18} className="mr-2 inline" />
                   Images
                 </Link>
                 {/* Theme */}
-                <DarkModeToggle />
+                <ThemeToggle />
               </nav>
 
               {/* Mobile Menu Icon */}
-              <div className="lg:hidden flex items-center">
+              <div className="flex items-center lg:hidden">
                 <button
                   onClick={toggleSidebar}
                   className="text-gray-900 dark:text-white"
@@ -86,13 +86,13 @@ const HomeNav = () => {
 
             {/* Mobile Sidebar */}
             <div
-              className={`fixed inset-0 bg-black bg-opacity-50 z-50 lg:hidden transform transition-all ${
+              className={`fixed inset-0 z-50 transform bg-black bg-opacity-50 transition-all lg:hidden ${
                 isOpen ? "translate-x-0" : "translate-x-full"
               }`}
             >
               <div
                 ref={sidebarRef}
-                className="w-3/4 bg-white p-6 h-full transform transition-all ml-auto"
+                className="ml-auto h-full w-3/4 transform bg-white p-6 transition-all"
               >
                 <div className="flex justify-between">
                   {/* Close icon inside the sidebar */}
@@ -103,24 +103,24 @@ const HomeNav = () => {
                     <X size={24} />
                   </button>
                 </div>
-                <nav className="space-y-4 mt-4">
+                <nav className="mt-4 space-y-4">
                   <Link
                     href="/"
-                    className="text-gray-900 dark:text-white flex items-center"
+                    className="flex items-center text-gray-900 dark:text-white"
                     onClick={toggleSidebar}
                   >
-                    <Home size={20} className="inline mr-2" />
+                    <Home size={20} className="mr-2 inline" />
                     Discover
                   </Link>
                   <Link
                     href="/images"
-                    className="text-gray-900 dark:text-white flex items-center"
+                    className="flex items-center text-gray-900 dark:text-white"
                     onClick={toggleSidebar}
                   >
-                    <ImageIcon size={20} className="inline mr-2" />
+                    <ImageIcon size={20} className="mr-2 inline" />
                     Images
                   </Link>
-                  <DarkModeToggle />
+                  <ThemeToggle />
                 </nav>
               </div>
             </div>
@@ -131,7 +131,7 @@ const HomeNav = () => {
         {/* Showcase */}
         <ShowCase />
       </div>
-      <div className="absolute bottom-0 left-0 bg-gradient-to-b from-black/0 to-black w-full h-[160px] z-[999]"></div>
+      <div className="absolute bottom-0 left-0 z-[999] h-[160px] w-full bg-gradient-to-b from-black/0 to-black"></div>
     </div>
   );
 };

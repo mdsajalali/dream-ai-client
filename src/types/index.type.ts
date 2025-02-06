@@ -15,7 +15,6 @@ export interface FavoriteProps {
   image: SingleImageCardProps;
 }
 
-
 // BTN TYPE
 export interface SliderArrowBtnProps {
   direction: "left" | "right";

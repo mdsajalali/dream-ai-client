@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { Sun, Moon } from "lucide-react";
 
-const DarkModeToggle = () => {
+const ThemeToggle = () => {
   const [isDark, setIsDark] = useState<boolean | null>(null);
 
   useEffect(() => {
@@ -12,7 +12,7 @@ const DarkModeToggle = () => {
       setIsDark(savedTheme === "dark");
     } else {
       const prefersDark = window.matchMedia(
-        "(prefers-color-scheme: dark)"
+        "(prefers-color-scheme: dark)",
       ).matches;
       setIsDark(prefersDark);
     }
@@ -35,15 +35,15 @@ const DarkModeToggle = () => {
   return (
     <button
       onClick={() => setIsDark(!isDark)}
-      className="p-2 rounded-full bg-gray-200 dark:bg-gray-800 transition-all"
+      className="rounded-full bg-gray-200 p-2 transition-all dark:bg-gray-800"
     >
       {isDark ? (
-        <Sun className="w-4 h-4 md:w-5 md:h-5 text-yellow-500" />
+        <Sun className="h-4 w-4 text-yellow-500 md:h-5 md:w-5" />
       ) : (
-        <Moon className="w-4 h-4  md:w-5 md:h-5 text-gray-900" />
+        <Moon className="h-4 w-4 text-gray-900 md:h-5 md:w-5" />
       )}
     </button>
   );
 };
 
-export default DarkModeToggle;
+export default ThemeToggle;

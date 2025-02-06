@@ -21,11 +21,11 @@ const TopToScroll = () => {
   return (
     <button
       onClick={scrollToTop}
-      className={`fixed bottom-5 z-[999] right-5 p-2 sm:p-3 bg-[#ccff02] text-black hover:text-white hover:bg-[#02bccc] rounded-full shadow-lg transition-opacity duration-300 ${
-        visible ? "opacity-100 " : "opacity-0 pointer-events-none"
+      className={`fixed bottom-5 right-5 z-[999] rounded-full bg-[#ccff02] p-2 text-black shadow-lg transition-opacity duration-300 hover:bg-[#02bccc] hover:text-white sm:p-3 ${
+        visible ? "opacity-100" : "pointer-events-none opacity-0"
       }`}
     >
-      <FaHandPointUp className="sm:text-2xl text-[18px]" />
+      <FaHandPointUp className="text-[18px] sm:text-2xl" />
     </button>
   );
 };

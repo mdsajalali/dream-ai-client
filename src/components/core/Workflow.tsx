@@ -2,20 +2,20 @@ import { Eye, Sparkles, Download } from "lucide-react";
 
 const Workflow = () => {
   return (
-    <section className="max-w-2xl mx-auto p-6">
-      <h2 className="text-3xl font-bold text-center mb-2">How it works</h2>
-      <p className="text-center text-lg mb-6">
+    <section className="mx-auto max-w-2xl p-6">
+      <h2 className="mb-2 text-center text-3xl font-bold">How it works</h2>
+      <p className="mb-6 text-center text-lg">
         Transform Words Into Stunning Images
       </p>
 
       <div className="space-y-6">
         {/* Step 1 */}
-        <div className="border rounded-lg p-4 shadow-md flex items-center space-x-4">
-          <div className="bg-gray-300 p-2 rounded-full">
+        <div className="flex items-center space-x-4 rounded-lg border p-4 shadow-md">
+          <div className="rounded-full bg-gray-300 p-2">
             <Eye size={24} className="text-gray-700" />
           </div>
           <div>
-            <h3 className="font-semibold text-lg">Describe Your Vision</h3>
+            <h3 className="text-lg font-semibold">Describe Your Vision</h3>
             <p className="text-gray-600">
               Type a phrase, sentence, or paragraph that describes the image you
               want to create.
@@ -24,12 +24,12 @@ const Workflow = () => {
         </div>
 
         {/* Step 2 */}
-        <div className="border rounded-lg p-4 shadow-md flex items-center space-x-4">
-          <div className="bg-gray-300 p-2 rounded-full">
+        <div className="flex items-center space-x-4 rounded-lg border p-4 shadow-md">
+          <div className="rounded-full bg-gray-300 p-2">
             <Sparkles size={24} className="text-gray-700" />
           </div>
           <div>
-            <h3 className="font-semibold text-lg">Watch the Magic</h3>
+            <h3 className="text-lg font-semibold">Watch the Magic</h3>
             <p className="text-gray-600">
               Our AI-powered engine will transform your text into a
               high-quality, unique image in seconds.
@@ -38,12 +38,12 @@ const Workflow = () => {
         </div>
 
         {/* Step 3 */}
-        <div className="border rounded-lg p-4 shadow-md flex items-center space-x-4">
-          <div className="bg-gray-300 p-2 rounded-full">
+        <div className="flex items-center space-x-4 rounded-lg border p-4 shadow-md">
+          <div className="rounded-full bg-gray-300 p-2">
             <Download size={24} className="text-gray-700" />
           </div>
           <div>
-            <h3 className="font-semibold text-lg">Download & Share</h3>
+            <h3 className="text-lg font-semibold">Download & Share</h3>
             <p className="text-gray-600">
               Instantly download your creation or share it with the world
               directly from our platform.
