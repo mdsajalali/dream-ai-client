@@ -56,8 +56,8 @@ const AiImages = () => {
         <div>
           <Swiper
             modules={[Navigation, Autoplay]}
-            spaceBetween={35}
-            slidesPerView={1}
+            spaceBetween={0}
+            slidesPerView={"auto"}
             loop={true}
             autoplay={{ delay: 3000 }}
             navigation={{ prevEl: ".aiNext", nextEl: ".aiPrev" }}
@@ -80,22 +80,19 @@ const AiImages = () => {
               },
               1170: {
                 slidesPerView: 4,
-                spaceBetween: 25,
               },
             }}
           >
             {aiImages?.map((item) => (
               <SwiperSlide key={item.id}>
-                <div className="  rounded-md p-2 shadow-sm transition-shadow hover:shadow-md">
-                  <div className="relative">
-                    <div className="relative mx-auto aspect-square rounded-md ">
-                      <Image
-                        src={item.img}
-                        alt={item.ai_name}
-                        fill
-                        className="mx-auto h-full w-full rounded-md object-contain object-bottom"
-                      />
-                    </div>
+                <div className=" shadow-sm transition-shadow  ">
+                  <div className="relative w-[290px] h-[350px]  ">
+                    <Image
+                      src={item.img}
+                      alt={item.ai_name}
+                      fill
+                      className="rounded-lg w-full h-full"
+                    />
                   </div>
                 </div>
               </SwiperSlide>

@@ -11,15 +11,19 @@ const Footer = () => {
           {/* CTA Section */}
           <div>
             <h2 className="text-2xl font-semibold">See the magic. Try now</h2>
-            <button className="mt-4 px-6 py-2 bg-blue-500 hover:bg-blue-600 transition rounded-lg">
-              Generate Images
-            </button>
+            <Link href="/discover">
+              <button className="mt-6 px-8 py-3 text-lg font-semibold text-black bg-gradient-to-r from-lime-400 to-cyan-500 rounded-full shadow-lg hover:scale-105 transition-transform duration-300">
+                Generate Images
+              </button>
+            </Link>
           </div>
 
           {/* Footer Bottom */}
           <div className="flex flex-col md:flex-row justify-between items-center border-t border-gray-700 pt-6">
             {/* Logo & Copyright */}
-            <Link href="/" className="text-lg font-bold">DreamAI</Link>
+            <Link href="/" className="text-lg font-bold">
+              DreamAI
+            </Link>
             <p className="text-sm mt-2 md:mt-0">
               © {new Date().getFullYear()} DreamAI. All rights reserved.
             </p>
