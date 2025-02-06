@@ -5,6 +5,7 @@ import { Inter } from "next/font/google";
 import Footer from "@/components/shared/Footer";
 import { Toaster } from "sonner";
 import RoutePathname from "@/components/core/RoutePathname";
+import TopToScroll from "@/components/shared/TopToScroll";
 
 const inter = Inter({
   weight: "400",
@@ -28,6 +29,8 @@ export default function RootLayout({
         <Toaster position="top-center" />
         <RoutePathname />
         <main>{children}</main>
+        {/* Top to scroll */}
+        <TopToScroll />
         <Footer />
       </body>
     </html>
