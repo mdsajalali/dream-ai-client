@@ -5,14 +5,14 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 py-10 text-white">
+    <footer className="bg-[#212121] py-10 text-white">
       <Container>
         <div className="container mx-auto space-y-6 px-4 text-center">
           {/* CTA Section */}
           <div>
             <h2 className="text-2xl font-semibold">See the magic. Try now</h2>
             <Link href="/discover">
-              <button className="mt-6 rounded-full bg-gradient-to-r from-lime-400 to-cyan-500 px-8 py-3 text-lg font-semibold text-black shadow-lg transition-transform duration-300 hover:scale-105">
+              <button className="mt-6 rounded-full bg-gradient-to-r from-lime-400 to-cyan-500 md:px-8 px-4 py-1 md:py-3 text-lg font-semibold text-black shadow-lg text-[12px] md:text-[16px] transition-transform duration-300 hover:scale-105">
                 Generate Images
               </button>
             </Link>

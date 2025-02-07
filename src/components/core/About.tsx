@@ -9,7 +9,7 @@ import Link from "next/link";
 const About = () => {
   return (
     <Container>
-      <div className="flex flex-col items-center gap-8 rounded-lg px-6 py-12  lg:flex-row lg:gap-12 lg:px-12">
+      <div className="flex flex-col items-center gap-8 rounded-lg px-6 py-12 lg:flex-row lg:gap-12 lg:px-12">
         {/* Image Section */}
         <div className="flex gap-2 sm:gap-4 lg:w-1/2">
           <div className="relative h-auto w-[340px] sm:h-[495px] sm:w-[400px]">
@@ -52,7 +52,7 @@ const About = () => {
             intelligence applications.
           </p>
           <Link href="/discover">
-            <button className="mt-6 rounded-full bg-gradient-to-r from-lime-400 to-cyan-500 px-8 py-3 text-lg font-semibold text-black shadow-lg transition-transform duration-300 hover:scale-105">
+            <button className="mt-6 rounded-full bg-gradient-to-r from-lime-400 to-cyan-500 px-4 py-1 text-[12px] text-lg font-semibold text-black shadow-lg transition-transform duration-300 hover:scale-105 md:px-8 md:py-3 md:text-[16px]">
               Get Started
             </button>
           </Link>

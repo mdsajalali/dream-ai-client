@@ -30,7 +30,7 @@ const Discover = () => {
   return (
     <div className="flex min-h-[calc(100vh-309px)] flex-col items-center justify-center p-4">
       {!showImageBox ? (
-        <p className="w-[400px] text-center text-sm text-gray-400">
+        <p className="w-[400px] text-center text-sm dark:text-white text-gray-400">
           Enter a prompt in the field below and click &quot;Generate&quot; to
           see your AI-generated image.
         </p>

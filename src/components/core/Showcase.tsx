@@ -50,41 +50,39 @@ const showcase = [
 
 const ShowCase = () => {
   return (
-    <section className="">
-      <>
-        <div>
-          <Swiper
-            modules={[Navigation, Autoplay]}
-            spaceBetween={0}
-            slidesPerView={"auto"}
-            loop={true}
-            autoplay={{ delay: 0, reverseDirection: true }}
-            speed={3500}
-            navigation={{ prevEl: ".aiNext", nextEl: ".aiPrev" }}
-          >
-            {showcase?.map((item) => (
-              <SwiperSlide key={item.id} className="sliderImageWrapper">
-                <div
-                  className={`rounded-md p-2 shadow-sm transition-shadow hover:shadow-md ${
-                    item.id % 2 == 0 ? "translate-y-10" : ""
-                  }`}
-                >
-                  <div className="relative">
-                    <div className="relative mx-auto aspect-[3/4] rounded-md">
-                      <Image
-                        src={item.img}
-                        alt="Image"
-                        fill
-                        className="rounded-md object-cover"
-                      />
-                    </div>
+    <section>
+      <div>
+        <Swiper
+          modules={[Navigation, Autoplay]}
+          spaceBetween={0}
+          slidesPerView={"auto"}
+          loop={true}
+          autoplay={{ delay: 0, reverseDirection: true }}
+          speed={3500}
+          navigation={{ prevEl: ".aiNext", nextEl: ".aiPrev" }}
+        >
+          {showcase?.map((item) => (
+            <SwiperSlide key={item.id} className="sliderImageWrapper">
+              <div
+                className={`rounded-md p-2 shadow-sm transition-shadow hover:shadow-md ${
+                  item.id % 2 == 0 ? "translate-y-10" : ""
+                }`}
+              >
+                <div className="relative">
+                  <div className="relative mx-auto aspect-[3/4] rounded-md">
+                    <Image
+                      src={item.img}
+                      alt="Image"
+                      fill
+                      className="rounded-md object-cover"
+                    />
                   </div>
                 </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
-      </>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
     </section>
   );
 };

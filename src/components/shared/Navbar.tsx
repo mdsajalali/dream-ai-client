@@ -53,16 +53,16 @@ const Navbar = () => {
     <header
       className={`transition-all ${
         scrolling
-          ? "fixed left-0 top-0 z-50 w-full bg-black shadow-md"
-          : "bg-white shadow-md dark:bg-gray-800"
-      } ${scrolling ? "py-2" : "py-4"}`}
+          ? "fixed left-0 top-0 z-50 w-full bg-[#212121]"
+          : "border-b bg-white dark:bg-[#212121]"
+      } ${scrolling ? "py-4" : "py-4"}`}
     >
       <div className="mx-auto flex max-w-[1200px] items-center justify-between px-4 lg:px-0">
         {/* Logo */}
         <Link href="/" className="flex items-center space-x-2">
           <span
             className={`text-2xl font-semibold ${
-              scrolling ? "text-white" : "text-gray-900"
+              scrolling ? "text-white" : "text-gray-900 dark:text-white"
             }`}
           >
             DreamAI
@@ -112,7 +112,7 @@ const Navbar = () => {
       >
         <div
           ref={sidebarRef}
-          className="ml-auto h-full w-3/4 transform bg-white p-6 transition-all"
+          className="ml-auto h-full w-3/4 transform bg-white p-6 transition-all dark:bg-[#212121]"
         >
           <div className="flex justify-between">
             {/* Close icon inside the sidebar */}

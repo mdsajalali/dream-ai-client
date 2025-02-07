@@ -78,7 +78,7 @@ const ImageCard = ({ image }: ImageCardProps) => {
   };
 
   return (
-    <div className="flex flex-col rounded-lg bg-white p-4 shadow-lg">
+    <div className="flex flex-col rounded-lg bg-white p-4 shadow-lg dark:bg-[#212121]">
       <LightGallery plugins={[lgZoom, lgThumbnail]} speed={500}>
         <a
           key={image?._id}
@@ -95,7 +95,7 @@ const ImageCard = ({ image }: ImageCardProps) => {
       </LightGallery>
 
       <div className="mt-3 flex items-center justify-end">
-        <div className="flex items-center gap-4 text-sm text-gray-500">
+        <div className="flex items-center gap-4 text-sm dark:text-white text-gray-500">
           {/* Date with Icon */}
           <div className="flex items-center gap-1">
             <CalendarIcon size={15} />
@@ -115,23 +115,23 @@ const ImageCard = ({ image }: ImageCardProps) => {
           </div>
         </div>
       </div>
-      <p className="my-3 mb-auto line-clamp-2 text-sm text-gray-600">
+      <p className="my-3 mb-auto line-clamp-2 text-sm dark:text-white text-gray-600">
         {image?.prompt}
       </p>
       <div className="mt-3 flex items-center gap-4">
         <Download
-          className="h-5 w-5 cursor-pointer text-gray-600 hover:text-black"
+          className="h-5 w-5 cursor-pointer dark:text-white text-gray-600 hover:text-black"
           onClick={handleDownload}
         />
         <Share2
-          className="h-5 w-5 cursor-pointer text-gray-600 hover:text-black"
+          className="h-5 w-5 cursor-pointer dark:text-white text-gray-600 hover:text-black"
           onClick={() => setIsOpen(true)}
         />
         <div onClick={handleCopy} className="cursor-pointer">
           {copied ? (
             <Check className="h-5 w-5 text-green-500" />
           ) : (
-            <Copy className="h-5 w-5 text-gray-600 hover:text-black" />
+            <Copy className="h-5 w-5 dark:text-white text-gray-600 hover:text-black" />
           )}
         </div>
       </div>

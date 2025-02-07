@@ -42,13 +42,13 @@ const HomeNav = () => {
         <header className="z-[999] w-full">
           <div
             className={`${
-              scrolled ? "bg-black" : "bg-transparent"
+              scrolled ? "bg-[#212121]" : "bg-transparent"
             } fixed left-0 right-0 top-0 z-[9999] w-full transition-all duration-300`}
           >
             <div className="mx-auto flex max-w-[1200px] items-center justify-between px-4 py-4 lg:px-0">
               {/* Logo */}
               <Link href="/" className="flex items-center space-x-2">
-                <span className="text-2xl font-semibold  text-white dark:text-white">
+                <span className="text-2xl font-semibold text-white dark:text-white">
                   DreamAI
                 </span>
               </Link>
@@ -79,7 +79,11 @@ const HomeNav = () => {
                   onClick={toggleSidebar}
                   className="text-gray-900 dark:text-white"
                 >
-                  {isOpen ? <X size={24} /> : <Menu size={24} />}
+                  {isOpen ? (
+                    <X size={24} />
+                  ) : (
+                    <Menu size={24} className="text-white" />
+                  )}
                 </button>
               </div>
             </div>
@@ -92,7 +96,7 @@ const HomeNav = () => {
             >
               <div
                 ref={sidebarRef}
-                className="ml-auto h-full w-3/4 transform bg-white p-6 transition-all"
+                className="ml-auto h-full w-3/4 transform bg-white p-6 transition-all dark:bg-[#212121]"
               >
                 <div className="flex justify-between">
                   {/* Close icon inside the sidebar */}
@@ -105,7 +109,7 @@ const HomeNav = () => {
                 </div>
                 <nav className="mt-4 space-y-4">
                   <Link
-                    href="/"
+                    href="/discover"
                     className="flex items-center text-gray-900 dark:text-white"
                     onClick={toggleSidebar}
                   >
@@ -131,7 +135,7 @@ const HomeNav = () => {
         {/* Showcase */}
         <ShowCase />
       </div>
-      <div className="absolute bottom-0 left-0 z-[999] h-[160px] w-full bg-gradient-to-b from-black/0 to-black"></div>
+      <div className="absolute bottom-0 left-0 z-[999] h-[160px] w-full bg-gradient-to-b from-black/0 to-black" />
     </div>
   );
 };
