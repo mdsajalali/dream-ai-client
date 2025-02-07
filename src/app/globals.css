@@ -67,6 +67,25 @@
   }
 }
 
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #616366;
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #6b7280;
+  cursor: pointer;
+}
+
 .swiper-wrapper {
   transition-timing-function: linear !important;
   pointer-events: none !important;
