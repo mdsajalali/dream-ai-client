@@ -43,12 +43,12 @@ const HomeNav = () => {
           <div
             className={`${
               scrolled ? "bg-black" : "bg-transparent"
-            } fixed left-0 right-0 top-0 z-[999] w-full transition-all duration-300`}
+            } fixed left-0 right-0 top-0 z-[9999] w-full transition-all duration-300`}
           >
             <div className="mx-auto flex max-w-[1200px] items-center justify-between px-4 py-4 lg:px-0">
               {/* Logo */}
               <Link href="/" className="flex items-center space-x-2">
-                <span className="text-2xl font-semibold text-gray-900 dark:text-white">
+                <span className="text-2xl font-semibold  text-white dark:text-white">
                   DreamAI
                 </span>
               </Link>
@@ -57,14 +57,14 @@ const HomeNav = () => {
               <nav className="hidden items-center justify-center space-x-6 lg:flex">
                 <Link
                   href="/discover"
-                  className="flex items-center text-gray-900 dark:text-white"
+                  className="flex items-center text-white dark:text-white"
                 >
                   <Home size={18} className="mr-2 inline" />
                   Discover
                 </Link>
                 <Link
                   href="/images"
-                  className="flex items-center text-gray-900 dark:text-white"
+                  className="flex items-center text-white dark:text-white"
                 >
                   <ImageIcon size={18} className="mr-2 inline" />
                   Images

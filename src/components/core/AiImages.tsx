@@ -39,12 +39,12 @@ const AiImages = () => {
   return (
     <section className="my-10">
       <Container>
-        <div className="flex items-center justify-between gap-2">
+        <div className="flex items-center justify-between gap-2 mb-5">
           <div>
             <p className="mb-3 font-semibold uppercase text-primary">
               Create your dream with Ai
             </p>
-            <h3 className="mb-3 text-2xl font-bold leading-snug text-black lg:text-3xl xl:text-[40px]">
+            <h3 className="mb-3 text-2xl font-bold leading-snug text-black lg:text-3xl dark:text-white xl:text-[40px]">
               AI images
             </h3>
           </div>

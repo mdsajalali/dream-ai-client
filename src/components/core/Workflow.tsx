@@ -2,7 +2,7 @@ import { Eye, Sparkles, Download } from "lucide-react";
 
 const Workflow = () => {
   return (
-    <section className="mx-auto max-w-2xl p-6">
+    <section className="mx-auto mb-10 max-w-2xl p-6">
       <h2 className="mb-2 text-center text-3xl font-bold">How it works</h2>
       <p className="mb-6 text-center text-lg">
         Transform Words Into Stunning Images
@@ -16,7 +16,7 @@ const Workflow = () => {
           </div>
           <div>
             <h3 className="text-lg font-semibold">Describe Your Vision</h3>
-            <p className="text-gray-600">
+            <p className="text-gray-600 dark:text-gray-300">
               Type a phrase, sentence, or paragraph that describes the image you
               want to create.
             </p>
@@ -30,7 +30,7 @@ const Workflow = () => {
           </div>
           <div>
             <h3 className="text-lg font-semibold">Watch the Magic</h3>
-            <p className="text-gray-600">
+            <p className="text-gray-600 dark:text-gray-300">
               Our AI-powered engine will transform your text into a
               high-quality, unique image in seconds.
             </p>
@@ -44,7 +44,7 @@ const Workflow = () => {
           </div>
           <div>
             <h3 className="text-lg font-semibold">Download & Share</h3>
-            <p className="text-gray-600">
+            <p className="text-gray-600 dark:text-gray-300">
               Instantly download your creation or share it with the world
               directly from our platform.
             </p>

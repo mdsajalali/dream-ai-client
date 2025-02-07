@@ -9,7 +9,7 @@ import Link from "next/link";
 const About = () => {
   return (
     <Container>
-      <div className="flex flex-col items-center gap-8 rounded-lg px-6 py-12 dark:bg-gray-900 lg:flex-row lg:gap-12 lg:px-12">
+      <div className="flex flex-col items-center gap-8 rounded-lg px-6 py-12  lg:flex-row lg:gap-12 lg:px-12">
         {/* Image Section */}
         <div className="flex gap-2 sm:gap-4 lg:w-1/2">
           <div className="relative h-auto w-[340px] sm:h-[495px] sm:w-[400px]">
@@ -17,7 +17,7 @@ const About = () => {
               src={about_one}
               fill
               alt="About"
-              className="rounded-lg object-cover shadow-lg transition-transform duration-300 hover:scale-105"
+              className="rounded-lg object-cover shadow-lg transition-transform duration-300"
             />
           </div>
           <div className="flex flex-col gap-2 sm:gap-4">
@@ -26,14 +26,14 @@ const About = () => {
               width={400}
               height={300}
               alt="About"
-              className="rounded-lg shadow-lg transition-transform duration-300 hover:scale-105"
+              className="rounded-lg shadow-lg transition-transform duration-300"
             />
             <Image
               src={about_three}
               width={400}
               height={300}
               alt="About"
-              className="rounded-lg shadow-lg transition-transform duration-300 hover:scale-105"
+              className="rounded-lg shadow-lg transition-transform duration-300"
             />
           </div>
         </div>
@@ -47,8 +47,9 @@ const About = () => {
             Easy ways to use AI tools, and tools to build AI.
           </h2>
           <p className="mt-4 leading-relaxed text-gray-600 dark:text-gray-400">
-            Easy ways to use AI tools, and tools to build AI.Easy ways to use AI
-            tools, and tools to build AI.
+            Simple and effective methods to utilize AI-powered tools, along with
+            essential platforms and frameworks for developing artificial
+            intelligence applications.
           </p>
           <Link href="/discover">
             <button className="mt-6 rounded-full bg-gradient-to-r from-lime-400 to-cyan-500 px-8 py-3 text-lg font-semibold text-black shadow-lg transition-transform duration-300 hover:scale-105">

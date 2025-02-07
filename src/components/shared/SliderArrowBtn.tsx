@@ -4,7 +4,7 @@ import { GoArrowLeft, GoArrowRight } from "react-icons/go";
 const SliderArrowBtn = ({ direction, className }: SliderArrowBtnProps) => {
   return (
     <div
-      className={`${className} flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-primary bg-[#F4F8FF] text-2xl text-primary transition-colors duration-300 hover:bg-primary hover:text-white sm:h-12 sm:w-12`}
+      className={`${className} flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-gradient-to-r from-lime-400 to-cyan-500 text-2xl !text-black text-primary shadow-lg transition-transform duration-300 hover:scale-105 sm:h-12 sm:w-12`}
     >
       {direction === "left" ? <GoArrowLeft /> : <GoArrowRight />}
     </div>
