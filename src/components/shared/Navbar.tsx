@@ -5,7 +5,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Menu, X, Home, Image as ImageIcon } from "lucide-react";
 import Link from "next/link";
-import ThemeToggle from "../core/Theme";
+import ThemeToggle from "../core/ThemeToggle";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);

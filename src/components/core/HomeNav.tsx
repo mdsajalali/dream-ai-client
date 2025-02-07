@@ -5,9 +5,9 @@
 import { useState, useEffect, useRef } from "react";
 import { Menu, X, Home, Image as ImageIcon } from "lucide-react";
 import Link from "next/link";
-import Hero from "./Hero";
 import ShowCase from "./Showcase";
-import ThemeToggle from "./Theme";
+import ThemeToggle from "./ThemeToggle";
+import Hero from "./Hero";
 
 const HomeNav = () => {
   const [isOpen, setIsOpen] = useState(false);
