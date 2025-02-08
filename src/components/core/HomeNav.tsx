@@ -11,6 +11,7 @@ import Hero from "./Hero";
 import Registration from "./Registration";
 import { UserProps } from "@/types/index.type";
 import { signOut } from "next-auth/react";
+import JwtDecode from "@/utils/jwtDecode";
 
 const HomeNav = ({ session }: { session: UserProps | null }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,8 +19,13 @@ const HomeNav = ({ session }: { session: UserProps | null }) => {
   const sidebarRef = useRef(null);
 
   const [isFormOpen, setIsFormOpen] = useState(false);
+  const user = JwtDecode();
 
   const toggleSidebar = () => setIsOpen(!isOpen);
+
+  const handleRemove = () => {
+    localStorage.removeItem("accessToken");
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -81,9 +87,12 @@ const HomeNav = ({ session }: { session: UserProps | null }) => {
                   <Heart size={18} className="mr-2 inline" />
                   Favorites
                 </Link>
-                {session?.user ? (
+                {session?.user || user?.email ? (
                   <div
-                    onClick={() => signOut()}
+                    onClick={() => {
+                      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+                      signOut() && handleRemove();
+                    }}
                     className="flex cursor-pointer items-center text-white dark:text-white"
                   >
                     <LogIn size={18} className="mr-2 inline" />
@@ -160,9 +169,12 @@ const HomeNav = ({ session }: { session: UserProps | null }) => {
                     <Heart size={18} className="mr-2 inline" />
                     Favorites
                   </Link>
-                  {session?.user ? (
+                  {session?.user || user?.email ? (
                     <div
-                      onClick={() => signOut()}
+                      onClick={() => {
+                        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+                        signOut() && handleRemove();
+                      }}
                       className="flex cursor-pointer items-center text-white dark:text-white"
                     >
                       <LogIn size={18} className="mr-2 inline" />
