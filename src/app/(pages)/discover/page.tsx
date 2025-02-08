@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { Download, Copy, ArrowUp, X, Check, Share2 } from "lucide-react";
+import { Download, Copy, ArrowUp, X, Check, Share2, Heart } from "lucide-react";
 import axiosInstance from "@/utils/axiosInstance";
 import { toast } from "sonner";
 
@@ -150,6 +150,9 @@ const Discover: React.FC = () => {
                   ) : (
                     <Copy className="h-6 w-6 text-white" />
                   )}
+                </button>
+                <button className="rounded-md bg-gray-900/60 p-2 transition hover:bg-gray-700">
+                  <Heart className="h-6 w-6 text-white" />
                 </button>
               </div>
             )}

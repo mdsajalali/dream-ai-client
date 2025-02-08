@@ -3,7 +3,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { Menu, X, Home, Image as ImageIcon, LogIn } from "lucide-react";
+import { Menu, X, Home, Image as ImageIcon, LogIn, Heart } from "lucide-react";
 import Link from "next/link";
 import ThemeToggle from "../core/ThemeToggle";
 import Registration from "../core/Registration";
@@ -90,6 +90,15 @@ const Navbar = () => {
           >
             <ImageIcon size={18} className="mr-2 inline" />
             Images
+          </Link>
+          <Link
+            href="/favorites"
+            className={`flex items-center text-gray-900 dark:text-white ${
+              scrolling ? "text-white" : ""
+            }`}
+          >
+            <Heart size={18} className="mr-2 inline" />
+            Favorites
           </Link>
           <div
             onClick={() => setIsFormOpen(true)}
