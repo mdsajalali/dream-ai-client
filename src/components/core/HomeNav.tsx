@@ -3,16 +3,19 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { Menu, X, Home, Image as ImageIcon } from "lucide-react";
+import { Menu, X, Home, Image as ImageIcon, LogIn } from "lucide-react";
 import Link from "next/link";
 import ShowCase from "./Showcase";
 import ThemeToggle from "./ThemeToggle";
 import Hero from "./Hero";
+import Registration from "./Registration";
 
 const HomeNav = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const sidebarRef = useRef(null);
+
+  const [isFormOpen, setIsFormOpen] = useState(false);
 
   const toggleSidebar = () => setIsOpen(!isOpen);
 
@@ -69,6 +72,13 @@ const HomeNav = () => {
                   <ImageIcon size={18} className="mr-2 inline" />
                   Images
                 </Link>
+                <div
+                  onClick={() => setIsFormOpen(true)}
+                  className="flex cursor-pointer items-center text-white dark:text-white"
+                >
+                  <LogIn size={18} className="mr-2 inline" />
+                  Login
+                </div>
                 {/* Theme */}
                 <ThemeToggle />
               </nav>
@@ -113,7 +123,7 @@ const HomeNav = () => {
                     className="flex items-center text-gray-900 dark:text-white"
                     onClick={toggleSidebar}
                   >
-                    <Home size={20} className="mr-2 inline" />
+                    <Home size={18} className="mr-2 inline" />
                     Discover
                   </Link>
                   <Link
@@ -121,9 +131,19 @@ const HomeNav = () => {
                     className="flex items-center text-gray-900 dark:text-white"
                     onClick={toggleSidebar}
                   >
-                    <ImageIcon size={20} className="mr-2 inline" />
+                    <ImageIcon size={18} className="mr-2 inline" />
                     Images
                   </Link>
+                  <div
+                    onClick={() => {
+                      setIsFormOpen(true);
+                      setIsOpen(false);
+                    }}
+                    className="flex cursor-pointer items-center text-white dark:text-white"
+                  >
+                    <LogIn size={18} className="mr-2 inline" />
+                    Login
+                  </div>
                   <ThemeToggle />
                 </nav>
               </div>
@@ -136,6 +156,9 @@ const HomeNav = () => {
         <ShowCase />
       </div>
       <div className="absolute bottom-0 left-0 z-[999] h-[160px] w-full bg-gradient-to-b from-black/0 to-black" />
+
+      {/* Registration modal */}
+      <Registration isFormOpen={isFormOpen} setIsFormOpen={setIsFormOpen} />
     </div>
   );
 };

@@ -51,3 +51,8 @@ export interface ParamsProps {
 export interface CartItemProps {
   product: LocalProduct;
 }
+
+export type RegistrationProps = {
+  isFormOpen: boolean;
+  setIsFormOpen: React.Dispatch<React.SetStateAction<boolean>>;
+};
