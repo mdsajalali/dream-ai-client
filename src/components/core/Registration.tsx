@@ -10,6 +10,7 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { Eye, EyeOff } from "lucide-react";
 import { RegistrationProps } from "@/types/index.type";
+import { FaGoogle } from "react-icons/fa";
 
 // Separate schemas for login and signup
 const loginSchema = z.object({
@@ -116,6 +117,21 @@ const Registration = ({ isFormOpen, setIsFormOpen }: RegistrationProps) => {
                 Login
               </Button>
             </form>
+
+            {/* Google Login Button for Login */}
+            <div className="relative mt-4 text-center">
+              <div className="absolute left-0 top-1/2 w-[45%] -translate-y-1/2 transform border border-b"></div>
+              <div className="mx-4 inline-block">OR</div>
+              <div className="absolute right-0 top-1/2 w-[45%] -translate-y-1/2 transform border border-b"></div>
+            </div>
+
+            <Button
+              className="mt-4 flex w-full items-center justify-center bg-[#212121] text-white dark:bg-white dark:text-black"
+              type="button"
+            >
+              <FaGoogle size={20} className="mr-2" />
+              Sign in with Google
+            </Button>
           </TabsContent>
 
           <TabsContent value="signup">
@@ -182,6 +198,21 @@ const Registration = ({ isFormOpen, setIsFormOpen }: RegistrationProps) => {
                 Sign Up
               </Button>
             </form>
+
+            {/* Google Login Button for Signup */}
+            <div className="relative mt-4 text-center">
+              <div className="absolute left-0 top-1/2 w-[45%] -translate-y-1/2 transform border border-b"></div>
+              <div className="mx-4 inline-block">OR</div>
+              <div className="absolute right-0 top-1/2 w-[45%] -translate-y-1/2 transform border border-b"></div>
+            </div>
+
+            <Button
+              className="mt-4 flex w-full items-center justify-center bg-[#212121] text-white dark:bg-white dark:text-black"
+              type="button"
+            >
+              <FaGoogle size={20} className="mr-2" />
+              Sign up with Google
+            </Button>
           </TabsContent>
         </Tabs>
       </DialogContent>

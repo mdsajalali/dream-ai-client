@@ -158,6 +158,13 @@ const Navbar = () => {
               <ImageIcon size={20} className="mr-2 inline" />
               Images
             </Link>
+            <Link
+              href="/favorites"
+              className="flex items-center text-gray-900 dark:text-white"
+            >
+              <Heart size={18} className="mr-2 inline" />
+              Favorites
+            </Link>
             <div
               onClick={() => {
                 setIsFormOpen(true);
