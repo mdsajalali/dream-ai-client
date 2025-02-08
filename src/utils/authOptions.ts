@@ -8,8 +8,9 @@ export const authOptions: NextAuthOptions = {
       clientSecret: process.env.GOOGLE_SECRET as string,
     }),
   ],
+  // This is will be redirect page link
   pages: {
-    signIn: "/login",
+    signIn: "/favorites",
   },
   secret: process.env.NEXTAUTH_SECRET,
 };
