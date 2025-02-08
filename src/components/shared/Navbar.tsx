@@ -7,8 +7,10 @@ import { Menu, X, Home, Image as ImageIcon, LogIn, Heart } from "lucide-react";
 import Link from "next/link";
 import ThemeToggle from "../core/ThemeToggle";
 import Registration from "../core/Registration";
+import { UserProps } from "@/types/index.type";
+import { signOut } from "next-auth/react";
 
-const Navbar = () => {
+const Navbar = ({ session }: { session: UserProps | null }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolling, setScrolling] = useState(false);
   const sidebarRef = useRef(null);
@@ -100,13 +102,23 @@ const Navbar = () => {
             <Heart size={18} className="mr-2 inline" />
             Favorites
           </Link>
-          <div
-            onClick={() => setIsFormOpen(true)}
-            className="flex cursor-pointer items-center text-white dark:text-white"
-          >
-            <LogIn size={18} className="mr-2 inline" />
-            Login
-          </div>
+          {session?.user ? (
+            <div
+              onClick={() => signOut()}
+              className="flex cursor-pointer items-center text-white dark:text-white"
+            >
+              <LogIn size={18} className="mr-2 inline" />
+              Logout
+            </div>
+          ) : (
+            <div
+              onClick={() => setIsFormOpen(true)}
+              className="flex cursor-pointer items-center text-white dark:text-white"
+            >
+              <LogIn size={18} className="mr-2 inline" />
+              Login
+            </div>
+          )}
           {/* Theme */}
           <ThemeToggle />
         </nav>
@@ -165,16 +177,26 @@ const Navbar = () => {
               <Heart size={18} className="mr-2 inline" />
               Favorites
             </Link>
-            <div
-              onClick={() => {
-                setIsFormOpen(true);
-                setIsOpen(false);
-              }}
-              className="flex cursor-pointer items-center text-white dark:text-white"
-            >
-              <LogIn size={18} className="mr-2 inline" />
-              Login
-            </div>
+            {session?.user ? (
+              <div
+                onClick={() => signOut()}
+                className="flex cursor-pointer items-center text-white dark:text-white"
+              >
+                <LogIn size={18} className="mr-2 inline" />
+                Logout
+              </div>
+            ) : (
+              <div
+                onClick={() => {
+                  setIsFormOpen(true);
+                  setIsOpen(false);
+                }}
+                className="flex cursor-pointer items-center text-white dark:text-white"
+              >
+                <LogIn size={18} className="mr-2 inline" />
+                Login
+              </div>
+            )}
             <ThemeToggle />
           </nav>
         </div>

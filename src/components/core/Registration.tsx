@@ -11,6 +11,7 @@ import { Button } from "../ui/button";
 import { Eye, EyeOff } from "lucide-react";
 import { RegistrationProps } from "@/types/index.type";
 import { FaGoogle } from "react-icons/fa";
+import { signIn } from "next-auth/react";
 
 // Separate schemas for login and signup
 const loginSchema = z.object({
@@ -126,6 +127,11 @@ const Registration = ({ isFormOpen, setIsFormOpen }: RegistrationProps) => {
             </div>
 
             <Button
+              onClick={() =>
+                signIn("google", {
+                  callbackUrl: "http://localhost:3000/images",
+                })
+              }
               className="mt-4 flex w-full items-center justify-center bg-[#212121] text-white dark:bg-white dark:text-black"
               type="button"
             >
@@ -207,6 +213,11 @@ const Registration = ({ isFormOpen, setIsFormOpen }: RegistrationProps) => {
             </div>
 
             <Button
+              onClick={() =>
+                signIn("google", {
+                  callbackUrl: "http://localhost:3000/images",
+                })
+              }
               className="mt-4 flex w-full items-center justify-center bg-[#212121] text-white dark:bg-white dark:text-black"
               type="button"
             >
