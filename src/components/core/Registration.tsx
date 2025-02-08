@@ -12,6 +12,8 @@ import { Eye, EyeOff } from "lucide-react";
 import { RegistrationProps } from "@/types/index.type";
 import { FaGoogle } from "react-icons/fa";
 import { signIn } from "next-auth/react";
+import axiosInstance from "@/utils/axiosInstance";
+import { toast } from "sonner";
 
 // Separate schemas for login and signup
 const loginSchema = z.object({
@@ -53,21 +55,20 @@ const Registration = ({ isFormOpen, setIsFormOpen }: RegistrationProps) => {
     console.log(`Submitting ${activeTab} form`, data);
 
     if (activeTab === "login") {
-      const response = await fetch("/api/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: data.email, password: data.password }),
-      });
-      const result = await response.json();
-      console.log("Login Response:", result);
+      const response = await axiosInstance.post("/auth/login", data);
+      console.log("Login Response:", response?.data);
+      if (response.status === 200) {
+        localStorage.setItem("accessToken", response?.data?.token);
+        setIsFormOpen(false);
+        toast.success(response?.data?.message);
+      }
     } else {
-      const response = await fetch("/api/signup", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-      const result = await response.json();
-      console.log("Signup Response:", result);
+      const response = await axiosInstance.post("/auth/register", data);
+      console.log("Signup Response:", response);
+      if (response.status === 201) {
+        setIsFormOpen(false);
+        toast.success(response?.data?.message);
+      }
     }
   };
 

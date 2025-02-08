@@ -57,7 +57,6 @@ export type RegistrationProps = {
   setIsFormOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-
 export type UserProps = {
   user?: {
     name?: string | null | undefined;
