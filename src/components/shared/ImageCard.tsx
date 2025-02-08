@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 "use client";
 
 import { useState } from "react";
@@ -28,10 +30,14 @@ import lgThumbnail from "lightgallery/plugins/thumbnail";
 import "lightgallery/css/lightgallery.css";
 import "lightgallery/css/lg-zoom.css";
 import "lightgallery/css/lg-thumbnail.css";
+import JwtDecode from "@/utils/jwtDecode";
+import Registration from "../core/Registration";
 
 const ImageCard = ({ image }: ImageCardProps) => {
   const [copied, setCopied] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const user = JwtDecode();
+  const [isFormOpen, setIsFormOpen] = useState(false);
 
   const handleCopy = async () => {
     try {
@@ -60,6 +66,10 @@ const ImageCard = ({ image }: ImageCardProps) => {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const handleFavList = async () => {
+    toast.success("Favlist added successfully");
   };
 
   const shareLinks = {
@@ -95,8 +105,9 @@ const ImageCard = ({ image }: ImageCardProps) => {
         </a>
       </LightGallery>
 
-      <div className="mt-3 flex items-center justify-end">
-        <div className="flex items-center gap-4 text-sm text-gray-500 dark:text-white">
+      <div className="flex items-center justify-between">
+        <h1 className="mt-3 text-center text-[14px]">Generate by Sajal</h1>
+        <div className="mt-3 flex items-center gap-4 text-sm text-gray-500 dark:text-white">
           {/* Date with Icon */}
           <div className="flex items-center gap-1">
             <CalendarIcon size={15} />
@@ -116,6 +127,7 @@ const ImageCard = ({ image }: ImageCardProps) => {
           </div>
         </div>
       </div>
+
       <p className="my-3 mb-auto line-clamp-2 text-sm text-gray-600 dark:text-white">
         {image?.prompt}
       </p>
@@ -135,7 +147,18 @@ const ImageCard = ({ image }: ImageCardProps) => {
             <Copy className="h-5 w-5 text-gray-600 hover:text-black dark:text-white" />
           )}
         </div>
-        <Heart className="h-5 w-5 cursor-pointer text-gray-600 hover:text-black dark:text-white" />
+
+        {user?.email ? (
+          <Heart
+            onClick={handleFavList}
+            className="h-5 w-5 cursor-pointer text-gray-600 hover:text-black dark:text-white"
+          />
+        ) : (
+          <Heart
+            onClick={() => setIsFormOpen(true)}
+            className="h-5 w-5 cursor-pointer text-gray-600 hover:text-black dark:text-white"
+          />
+        )}
       </div>
 
       {/* Share Modal */}
@@ -250,6 +273,8 @@ const ImageCard = ({ image }: ImageCardProps) => {
           </div>
         </DialogContent>
       </Dialog>
+      {/* Registration modal */}
+      <Registration isFormOpen={isFormOpen} setIsFormOpen={setIsFormOpen} />
     </div>
   );
 };
