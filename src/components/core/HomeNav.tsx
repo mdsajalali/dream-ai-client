@@ -81,11 +81,11 @@ const HomeNav = ({ session }: { session: UserProps | null }) => {
                   Images
                 </Link>
                 <Link
-                  href="/favorites"
+                  href="/my-list"
                   className="flex items-center text-white dark:text-white"
                 >
                   <Heart size={18} className="mr-2 inline" />
-                  Favorites
+                  My List
                 </Link>
                 {session?.user || user?.email ? (
                   <div
@@ -163,11 +163,11 @@ const HomeNav = ({ session }: { session: UserProps | null }) => {
                     Images
                   </Link>
                   <Link
-                    href="/favorites"
+                    href="/my-list"
                     className="flex items-center text-gray-900 dark:text-white"
                   >
                     <Heart size={18} className="mr-2 inline" />
-                    Favorites
+                    My List
                   </Link>
                   {session?.user || user?.email ? (
                     <div
