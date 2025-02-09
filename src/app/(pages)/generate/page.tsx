@@ -2,7 +2,7 @@
 // @ts-nocheck
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { Download, Copy, ArrowUp, X, Check, Share2, Heart } from "lucide-react";
+import { Download, Copy, ArrowUp, X, Check, Share2 } from "lucide-react";
 import axiosInstance from "@/utils/axiosInstance";
 import { toast } from "sonner";
 
@@ -111,9 +111,9 @@ const Generate: React.FC = () => {
     )}`,
   };
 
-  const handleFavList = async () => {
-    toast.success("Favlist added successfully");
-  };
+  // const handleFavList = async () => {
+  //   toast.success("Favlist added successfully");
+  // };
 
   return (
     <div className="flex min-h-[calc(100vh-309px)] flex-col items-center justify-center p-4">
@@ -163,12 +163,12 @@ const Generate: React.FC = () => {
                     <Copy className="h-6 w-6 text-white" />
                   )}
                 </button>
-                <button
+                {/* <button
                   onClick={handleFavList}
                   className="rounded-md bg-gray-900/60 p-2 transition hover:bg-gray-700"
                 >
                   <Heart className="h-6 w-6 text-white" />
-                </button>
+                </button> */}
               </div>
             )}
           </div>
@@ -209,10 +209,10 @@ const Generate: React.FC = () => {
           )}
         </div>
       ) : (
-        <p className="mt-5 text-center font-semibold text-red-500">
+        <p className="mt-5 text-center font-semibold text-black dark:text-white">
           Please{" "}
           <span
-            className="cursor-pointer underline"
+            className="cursor-pointer text-red-500 underline"
             onClick={() => setIsFormOpen(true)}
           >
             log in

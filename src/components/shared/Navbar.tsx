@@ -9,7 +9,6 @@ import {
   Image as ImageIcon,
   LogIn,
   Heart,
-  LayoutDashboard,
   Sparkles,
   List,
 } from "lucide-react";
@@ -128,7 +127,7 @@ const Navbar = ({ session }: { session: UserProps | null }) => {
             Favorites
           </Link>
 
-          <Link
+          {/* <Link
             href="/dashboard"
             className={`flex items-center text-gray-900 dark:text-white ${
               scrolling ? "text-white" : ""
@@ -136,7 +135,7 @@ const Navbar = ({ session }: { session: UserProps | null }) => {
           >
             <LayoutDashboard size={18} className="mr-2 inline" />
             Dashboard
-          </Link>
+          </Link> */}
 
           {session?.user || user?.email ? (
             <div
@@ -227,14 +226,14 @@ const Navbar = ({ session }: { session: UserProps | null }) => {
               Favorites
             </Link>
 
-            <Link
+            {/* <Link
               href="/dashboard"
               className="flex items-center text-gray-900 dark:text-white"
               onClick={toggleSidebar}
             >
               <LayoutDashboard size={20} className="mr-2 inline" />
               Dashboard
-            </Link>
+            </Link> */}
             {session?.user || user?.email ? (
               <div
                 onClick={() => {

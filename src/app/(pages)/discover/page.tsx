@@ -32,7 +32,6 @@ const Discover = () => {
       .finally(() => setLoading(false));
   }, [currentPage]);
 
-  // Function to generate pagination numbers (Only 4 pages shown, others as dots)
   const generatePaginationNumbers = (): (number | string)[] => {
     const pages: (number | string)[] = [];
     const maxVisiblePages = 4;

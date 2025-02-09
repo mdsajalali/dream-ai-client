@@ -10,25 +10,25 @@ import axiosInstance from "@/utils/axiosInstance";
 import { SingleImageCardProps } from "@/types/index.type";
 import JwtDecode from "@/utils/jwtDecode";
 
-const MyListPage: React.FC = () => {
-  const [favorites, setFavorites] = useState<SingleImageCardProps[]>([]);
+const MyListPage = () => {
+  const [myImages, setMyImages] = useState<SingleImageCardProps[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const user = JwtDecode();
 
   useEffect(() => {
-    const fetchFavorites = async () => {
+    const fetchMyImages = async () => {
       try {
         const response = await axiosInstance.get(`/images/${user?.id}`);
-        setFavorites(response?.data);
+        setMyImages(response?.data);
       } catch (error) {
-        console.error("Error fetching favorites:", error);
+        console.error("Error fetching myImages:", error);
       } finally {
         setLoading(false);
       }
     };
 
     if (user?.id) {
-      fetchFavorites();
+      fetchMyImages();
     }
   }, [user?.id]);
 
@@ -42,8 +42,8 @@ const MyListPage: React.FC = () => {
               className="h-64 w-full animate-pulse rounded-md bg-gray-200"
             />
           ))
-        ) : favorites.length > 0 ? (
-          favorites.map((image) => <ImageCard key={image._id} image={image} />)
+        ) : myImages.length > 0 ? (
+          myImages.map((image) => <ImageCard key={image._id} image={image} />)
         ) : (
           <p className="col-span-full text-center text-gray-500 dark:text-white">
             No posts created yet.
