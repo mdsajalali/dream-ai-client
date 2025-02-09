@@ -37,7 +37,7 @@ export default function SidebarLayout({ children }: { children: ReactNode }) {
               onClick={() => setActive("/dashboard/users")}
             >
               <User className="h-5 w-5" />
-              <span>User</span>
+              <span>Users</span>
             </Link>
           </li>
           <li>
@@ -102,7 +102,7 @@ export default function SidebarLayout({ children }: { children: ReactNode }) {
               }}
             >
               <User className="h-5 w-5" />
-              <span>User</span>
+              <span>Users</span>
             </Link>
           </li>
           <li>
