@@ -10,8 +10,6 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { Eye, EyeOff } from "lucide-react";
 import { RegistrationProps } from "@/types/index.type";
-import { FaGoogle } from "react-icons/fa";
-import { signIn } from "next-auth/react";
 import axiosInstance from "@/utils/axiosInstance";
 import { toast } from "sonner";
 
@@ -61,6 +59,7 @@ const Registration = ({ isFormOpen, setIsFormOpen }: RegistrationProps) => {
         localStorage.setItem("accessToken", response?.data?.token);
         setIsFormOpen(false);
         toast.success(response?.data?.message);
+        window.location.reload();
       }
     } else {
       const response = await axiosInstance.post("/auth/register", data);
@@ -121,7 +120,7 @@ const Registration = ({ isFormOpen, setIsFormOpen }: RegistrationProps) => {
             </form>
 
             {/* Google Login Button for Login */}
-            <div className="relative mt-4 text-center">
+            {/* <div className="relative mt-4 text-center">
               <div className="absolute left-0 top-1/2 w-[45%] -translate-y-1/2 transform border border-b"></div>
               <div className="mx-4 inline-block">OR</div>
               <div className="absolute right-0 top-1/2 w-[45%] -translate-y-1/2 transform border border-b"></div>
@@ -138,7 +137,7 @@ const Registration = ({ isFormOpen, setIsFormOpen }: RegistrationProps) => {
             >
               <FaGoogle size={20} className="mr-2" />
               Sign in with Google
-            </Button>
+            </Button> */}
           </TabsContent>
 
           <TabsContent value="signup">
@@ -207,13 +206,13 @@ const Registration = ({ isFormOpen, setIsFormOpen }: RegistrationProps) => {
             </form>
 
             {/* Google Login Button for Signup */}
-            <div className="relative mt-4 text-center">
+            {/* <div className="relative mt-4 text-center">
               <div className="absolute left-0 top-1/2 w-[45%] -translate-y-1/2 transform border border-b"></div>
               <div className="mx-4 inline-block">OR</div>
               <div className="absolute right-0 top-1/2 w-[45%] -translate-y-1/2 transform border border-b"></div>
-            </div>
+            </div> */}
 
-            <Button
+            {/* <Button
               onClick={() =>
                 signIn("google", {
                   callbackUrl: "http://localhost:3000/images",
@@ -224,7 +223,7 @@ const Registration = ({ isFormOpen, setIsFormOpen }: RegistrationProps) => {
             >
               <FaGoogle size={20} className="mr-2" />
               Sign up with Google
-            </Button>
+            </Button> */}
           </TabsContent>
         </Tabs>
       </DialogContent>

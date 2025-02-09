@@ -8,6 +8,7 @@ import TopToScroll from "@/components/shared/TopToScroll";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/utils/authOptions";
 import FooterPathname from "@/components/core/FooterPahname";
+import WrapperProvider from "@/context/WrapperProvider";
 
 const inter = Inter({
   weight: "400",
@@ -29,13 +30,15 @@ export default async function RootLayout({
   return (
     <html lang="en" className={inter.className}>
       <body>
-        {/* Toast */}
-        <Toaster position="top-center" />
-        <RoutePathname session={session} />
-        <main>{children}</main>
-        {/* Top to scroll */}
-        <TopToScroll />
-        <FooterPathname />
+        <WrapperProvider>
+          {/* Toast */}
+          <Toaster position="top-center" />
+          <RoutePathname session={session} />
+          <main>{children}</main>
+          {/* Top to scroll */}
+          <TopToScroll />
+          <FooterPathname />
+        </WrapperProvider>
       </body>
     </html>
   );

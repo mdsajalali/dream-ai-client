@@ -10,8 +10,6 @@ const FavoritesPage = () => {
   const [favorites, setFavorites] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  console.log("favorites", favorites);
-
   useEffect(() => {
     const fetchFavorites = async () => {
       try {

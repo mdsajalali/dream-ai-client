@@ -110,9 +110,9 @@ const Discover: React.FC = () => {
     )}`,
   };
 
-   const handleFavList = async () => {
-     toast.success("Favlist added successfully");
-   };
+  const handleFavList = async () => {
+    toast.success("Favlist added successfully");
+  };
 
   return (
     <div className="flex min-h-[calc(100vh-309px)] flex-col items-center justify-center p-4">

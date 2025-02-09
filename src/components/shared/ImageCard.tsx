@@ -32,7 +32,7 @@ import "lightgallery/css/lg-zoom.css";
 import "lightgallery/css/lg-thumbnail.css";
 import JwtDecode from "@/utils/jwtDecode";
 import Registration from "../core/Registration";
-import axiosInstance from "@/utils/axiosInstance";
+import HeartBtn from "./HeartBtn";
 
 const ImageCard = ({ image }: ImageCardProps) => {
   const [copied, setCopied] = useState(false);
@@ -68,43 +68,6 @@ const ImageCard = ({ image }: ImageCardProps) => {
       console.log(error);
     }
   };
-
-  const handleFavList = async () => {
-    const token = localStorage.getItem("accessToken");
-
-    await axiosInstance.post(
-      "favorite/create-favorite",
-      {
-        imageId: image._id,
-      },
-      {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      },
-    );
-
-    toast.success("Favlist added successfully");
-  };
-
-  // const handleRemoveFavList = async () => {
-  //   try {
-  //     const token = localStorage.getItem("accessToken");
-
-  //     await axiosInstance.delete(`/favorite/remove-favorite/${image._id}`, {
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //       data: {
-  //         imageId: image._id,
-  //       },
-  //     });
-
-  //     toast.success("Favlist removed successfully");
-  //   } catch (error) {
-  //     console.error("Error removing favorite:", error);
-  //   }
-  // };
 
   const shareLinks = {
     facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
@@ -183,11 +146,7 @@ const ImageCard = ({ image }: ImageCardProps) => {
         </div>
 
         {user?.email ? (
-          <Heart
-            onClick={handleFavList}
-            // onClick={handleRemoveFavList}
-            className="h-5 w-5 cursor-pointer text-gray-600 hover:text-black dark:text-white"
-          />
+          <HeartBtn imageId={image._id} />
         ) : (
           <Heart
             onClick={() => setIsFormOpen(true)}
