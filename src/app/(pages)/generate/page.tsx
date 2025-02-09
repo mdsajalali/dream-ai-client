@@ -42,9 +42,10 @@ const Generate: React.FC = () => {
     setShowImageBox(true);
 
     try {
+      const userId = user?.id;
       const response = await axiosInstance.post<{ imageUrl: string }>(
         "/generate-image",
-        { prompt },
+        { prompt, userId },
       );
 
       setGeneratedImage(response.data.imageUrl);

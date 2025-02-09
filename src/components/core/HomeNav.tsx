@@ -3,7 +3,16 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { Menu, X, Image as ImageIcon, LogIn, Heart, LayoutDashboard, Sparkles, List } from "lucide-react";
+import {
+  Menu,
+  X,
+  Image as ImageIcon,
+  LogIn,
+  Heart,
+  LayoutDashboard,
+  Sparkles,
+  List,
+} from "lucide-react";
 import Link from "next/link";
 import ShowCase from "./Showcase";
 import ThemeToggle from "./ThemeToggle";
@@ -81,19 +90,20 @@ const HomeNav = ({ session }: { session: UserProps | null }) => {
                   My List
                 </Link>
                 <Link
-                  href="/favorites"
-                  className="flex items-center text-white dark:text-white"
-                >
-                  <Heart size={18} className="mr-2 inline" />
-                  Favorites
-                </Link>
-                <Link
                   href="/discover"
                   className="flex items-center text-white dark:text-white"
                 >
                   <ImageIcon size={18} className="mr-2 inline" />
                   Discover
                 </Link>
+                <Link
+                  href="/favorites"
+                  className="flex items-center text-white dark:text-white"
+                >
+                  <Heart size={18} className="mr-2 inline" />
+                  Favorites
+                </Link>
+
                 <Link
                   href="/dashboard"
                   className="flex items-center text-white dark:text-white"
@@ -177,13 +187,6 @@ const HomeNav = ({ session }: { session: UserProps | null }) => {
                     My List
                   </Link>
                   <Link
-                    href="/favorites"
-                    className="flex items-center text-gray-900 dark:text-white"
-                  >
-                    <Heart size={18} className="mr-2 inline" />
-                    Favorites
-                  </Link>
-                  <Link
                     href="/discover"
                     className="flex items-center text-gray-900 dark:text-white"
                     onClick={toggleSidebar}
@@ -191,6 +194,14 @@ const HomeNav = ({ session }: { session: UserProps | null }) => {
                     <ImageIcon size={18} className="mr-2 inline" />
                     Discover
                   </Link>
+                  <Link
+                    href="/favorites"
+                    className="flex items-center text-gray-900 dark:text-white"
+                  >
+                    <Heart size={18} className="mr-2 inline" />
+                    Favorites
+                  </Link>
+
                   <Link
                     href="/dashboard"
                     className="flex items-center text-gray-900 dark:text-white"

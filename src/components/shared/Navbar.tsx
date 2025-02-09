@@ -108,15 +108,6 @@ const Navbar = ({ session }: { session: UserProps | null }) => {
             <List size={18} className="mr-2 inline" />
             My List
           </Link>
-          <Link
-            href="/favorites"
-            className={`flex items-center text-gray-900 dark:text-white ${
-              scrolling ? "text-white" : ""
-            }`}
-          >
-            <Heart size={18} className="mr-2 inline" />
-            Favorites
-          </Link>
 
           <Link
             href="/discover"
@@ -127,6 +118,16 @@ const Navbar = ({ session }: { session: UserProps | null }) => {
             <ImageIcon size={18} className="mr-2 inline" />
             Discover
           </Link>
+          <Link
+            href="/favorites"
+            className={`flex items-center text-gray-900 dark:text-white ${
+              scrolling ? "text-white" : ""
+            }`}
+          >
+            <Heart size={18} className="mr-2 inline" />
+            Favorites
+          </Link>
+
           <Link
             href="/dashboard"
             className={`flex items-center text-gray-900 dark:text-white ${
@@ -210,14 +211,6 @@ const Navbar = ({ session }: { session: UserProps | null }) => {
             </Link>
 
             <Link
-              href="/favorites"
-              className="flex items-center text-gray-900 dark:text-white"
-            >
-              <Heart size={18} className="mr-2 inline" />
-              Favorites
-            </Link>
-
-            <Link
               href="/discover"
               className="flex items-center text-gray-900 dark:text-white"
               onClick={toggleSidebar}
@@ -225,6 +218,15 @@ const Navbar = ({ session }: { session: UserProps | null }) => {
               <ImageIcon size={20} className="mr-2 inline" />
               Discover
             </Link>
+
+            <Link
+              href="/favorites"
+              className="flex items-center text-gray-900 dark:text-white"
+            >
+              <Heart size={18} className="mr-2 inline" />
+              Favorites
+            </Link>
+
             <Link
               href="/dashboard"
               className="flex items-center text-gray-900 dark:text-white"
