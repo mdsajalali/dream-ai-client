@@ -43,20 +43,31 @@ export default function UserTable() {
     fetchUsers();
   }, []);
 
-  const handleRoleChange = (id: string, newRole: string) => {
-    setUsers((prevUsers) =>
-      prevUsers.map((user) =>
-        user._id === id ? { ...user, role: newRole } : user,
-      ),
-    );
+  const handleRoleChange = async (id: string, newRole: string) => {
+    try {
+      const res = await axiosInstance.put(`/auth/user/${id}`, {
+        role: newRole,
+      });
+
+      if (res?.status === 200) {
+        setUsers((prevUsers) =>
+          prevUsers.map((user) =>
+            user._id === id ? { ...user, role: newRole } : user,
+          ),
+        );
+        toast.success("User role updated successfully");
+      }
+    } catch (error) {
+      console.error("Error updating user role:", error);
+    }
   };
 
   const handleDeleteUser = async (id: string) => {
     try {
       const res = await axiosInstance.delete(`/auth/user/${id}`);
-      console.log("res", res)
+      console.log("res", res);
       setUsers((prevUsers) => prevUsers.filter((user) => user._id !== id));
-      if(res?.status === 200){
+      if (res?.status === 200) {
         toast.success(res?.data?.message);
       }
     } catch (error) {
