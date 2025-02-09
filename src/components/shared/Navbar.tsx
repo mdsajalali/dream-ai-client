@@ -11,6 +11,7 @@ import {
   Heart,
   Sparkles,
   List,
+  LayoutDashboard,
 } from "lucide-react";
 import Link from "next/link";
 import ThemeToggle from "../core/ThemeToggle";
@@ -129,15 +130,17 @@ const Navbar = ({ session }: { session: UserProps | null }) => {
             Favorites
           </Link>
 
-          {/* <Link
-            href="/dashboard"
-            className={`flex items-center text-gray-900 dark:text-white ${
-              scrolling ? "text-white" : ""
-            }`}
-          >
-            <LayoutDashboard size={18} className="mr-2 inline" />
-            Dashboard
-          </Link> */}
+          {user?.role === "admin" && (
+            <Link
+              href="/dashboard"
+              className={`flex items-center text-gray-900 dark:text-white ${
+                scrolling ? "text-white" : ""
+              }`}
+            >
+              <LayoutDashboard size={18} className="mr-2 inline" />
+              Dashboard
+            </Link>
+          )}
 
           {session?.user || user?.email ? (
             <div
@@ -230,14 +233,16 @@ const Navbar = ({ session }: { session: UserProps | null }) => {
               Favorites
             </Link>
 
-            {/* <Link
-              href="/dashboard"
-              className="flex items-center text-gray-900 dark:text-white"
-              onClick={toggleSidebar}
-            >
-              <LayoutDashboard size={20} className="mr-2 inline" />
-              Dashboard
-            </Link> */}
+            {user?.role && (
+              <Link
+                href="/dashboard"
+                className="flex items-center text-gray-900 dark:text-white"
+                onClick={toggleSidebar}
+              >
+                <LayoutDashboard size={20} className="mr-2 inline" />
+                Dashboard
+              </Link>
+            )}
             {session?.user || user?.email ? (
               <div
                 onClick={() => {

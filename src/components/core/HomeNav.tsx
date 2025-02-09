@@ -11,6 +11,7 @@ import {
   Heart,
   Sparkles,
   List,
+  LayoutDashboard,
 } from "lucide-react";
 import Link from "next/link";
 import ShowCase from "./Showcase";
@@ -105,13 +106,15 @@ const HomeNav = ({ session }: { session: UserProps | null }) => {
                   Favorites
                 </Link>
 
-                {/* <Link
-                  href="/dashboard"
-                  className="flex items-center text-white dark:text-white"
-                >
-                  <LayoutDashboard size={18} className="mr-2 inline" />
-                  Dashboard
-                </Link> */}
+                {user?.role === "admin" && (
+                  <Link
+                    href="/dashboard"
+                    className="flex items-center text-white dark:text-white"
+                  >
+                    <LayoutDashboard size={18} className="mr-2 inline" />
+                    Dashboard
+                  </Link>
+                )}
 
                 {session?.user || user?.email ? (
                   <div
@@ -205,14 +208,16 @@ const HomeNav = ({ session }: { session: UserProps | null }) => {
                     Favorites
                   </Link>
 
-                  {/* <Link
-                    href="/dashboard"
-                    className="flex items-center text-gray-900 dark:text-white"
-                    onClick={toggleSidebar}
-                  >
-                    <LayoutDashboard size={18} className="mr-2 inline" />
-                    Dashboard
-                  </Link> */}
+                  {user?.role === "admin" && (
+                    <Link
+                      href="/dashboard"
+                      className="flex items-center text-gray-900 dark:text-white"
+                      onClick={toggleSidebar}
+                    >
+                      <LayoutDashboard size={18} className="mr-2 inline" />
+                      Dashboard
+                    </Link>
+                  )}
 
                   {session?.user || user?.email ? (
                     <div

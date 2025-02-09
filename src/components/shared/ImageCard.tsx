@@ -102,8 +102,8 @@ const ImageCard = ({ image }: ImageCardProps) => {
         </a>
       </LightGallery>
 
-      <div className="flex items-center justify-between">
-        <h1 className="mt-3 text-center text-[14px]">Generate by Sajal</h1>
+      <div className="flex items-center justify-end">
+        {/* <h1 className="mt-3 text-center text-[14px]">Generate by Sajal</h1> */}
         <div className="mt-3 flex items-center gap-4 text-sm text-gray-500 dark:text-white">
           {/* Date with Icon */}
           <div className="flex items-center gap-1">
