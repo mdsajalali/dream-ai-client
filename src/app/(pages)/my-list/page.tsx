@@ -37,19 +37,25 @@ const Page = () => {
   return (
     <Container>
       <div className="grid grid-cols-1 gap-6 p-6 sm:grid-cols-2 md:grid-cols-3">
-        {loading
-          ? Array(9)
-              .fill(0)
-              .map((_, index) => (
-                <div
-                  key={index}
-                  className="h-64 w-full animate-pulse rounded-md bg-gray-200"
-                />
-              ))
-          : favorites?.map((image: ImageCardProps) => {
-              const imageData = image?.image;
-              return <ImageCard key={imageData?._id} image={imageData} />;
-            })}
+        {loading ? (
+          Array(9)
+            .fill(0)
+            .map((_, index) => (
+              <div
+                key={index}
+                className="h-64 w-full animate-pulse rounded-md bg-gray-200"
+              />
+            ))
+        ) : favorites && favorites.length > 0 ? (
+          favorites.map((image: ImageCardProps) => {
+            const imageData = image?.image;
+            return <ImageCard key={imageData?._id} image={imageData} />;
+          })
+        ) : (
+          <p className="col-span-full text-center text-gray-500 dark:text-white">
+            No favorites added yet.
+          </p>
+        )}
       </div>
     </Container>
   );
