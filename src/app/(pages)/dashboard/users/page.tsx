@@ -18,6 +18,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Trash } from "lucide-react";
+import { toast } from "sonner";
 
 interface User {
   _id: string;
@@ -52,8 +53,12 @@ export default function UserTable() {
 
   const handleDeleteUser = async (id: string) => {
     try {
-      await axiosInstance.delete(`/user-delete/${id}`);
+      const res = await axiosInstance.delete(`/auth/user/${id}`);
+      console.log("res", res)
       setUsers((prevUsers) => prevUsers.filter((user) => user._id !== id));
+      if(res?.status === 200){
+        toast.success(res?.data?.message);
+      }
     } catch (error) {
       console.error("Error deleting user:", error);
     }
