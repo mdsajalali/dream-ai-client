@@ -3,7 +3,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { Menu, X, Home, Image as ImageIcon, LogIn, Heart, LayoutDashboard } from "lucide-react";
+import { Menu, X, Image as ImageIcon, LogIn, Heart, LayoutDashboard, Sparkles, List } from "lucide-react";
 import Link from "next/link";
 import ShowCase from "./Showcase";
 import ThemeToggle from "./ThemeToggle";
@@ -67,17 +67,17 @@ const HomeNav = ({ session }: { session: UserProps | null }) => {
               {/* Desktop Navbar */}
               <nav className="hidden items-center justify-center space-x-6 lg:flex">
                 <Link
-                  href="/discover"
+                  href="/generate"
                   className="flex items-center text-white dark:text-white"
                 >
-                  <Home size={18} className="mr-2 inline" />
-                  Discover
+                  <Sparkles size={18} className="mr-2 inline" />
+                  Generate
                 </Link>
                 <Link
                   href="/my-list"
                   className="flex items-center text-white dark:text-white"
                 >
-                  <Heart size={18} className="mr-2 inline" />
+                  <List size={18} className="mr-2 inline" />
                   My List
                 </Link>
                 <Link
@@ -88,11 +88,11 @@ const HomeNav = ({ session }: { session: UserProps | null }) => {
                   Favorites
                 </Link>
                 <Link
-                  href="/images"
+                  href="/discover"
                   className="flex items-center text-white dark:text-white"
                 >
                   <ImageIcon size={18} className="mr-2 inline" />
-                  Images
+                  Discover
                 </Link>
                 <Link
                   href="/dashboard"
@@ -162,18 +162,18 @@ const HomeNav = ({ session }: { session: UserProps | null }) => {
                 </div>
                 <nav className="mt-4 space-y-4">
                   <Link
-                    href="/discover"
+                    href="/generate"
                     className="flex items-center text-gray-900 dark:text-white"
                     onClick={toggleSidebar}
                   >
-                    <Home size={18} className="mr-2 inline" />
-                    Discover
+                    <ImageIcon size={18} className="mr-2 inline" />
+                    Generate
                   </Link>
                   <Link
                     href="/my-list"
                     className="flex items-center text-gray-900 dark:text-white"
                   >
-                    <Heart size={18} className="mr-2 inline" />
+                    <List size={18} className="mr-2 inline" />
                     My List
                   </Link>
                   <Link
@@ -184,12 +184,12 @@ const HomeNav = ({ session }: { session: UserProps | null }) => {
                     Favorites
                   </Link>
                   <Link
-                    href="/images"
+                    href="/discover"
                     className="flex items-center text-gray-900 dark:text-white"
                     onClick={toggleSidebar}
                   >
                     <ImageIcon size={18} className="mr-2 inline" />
-                    Images
+                    Discover
                   </Link>
                   <Link
                     href="/dashboard"

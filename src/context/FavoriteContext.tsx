@@ -92,6 +92,7 @@ export const FavProvider = ({ children }: FavProviderProps) => {
 
       toast.success("Favorite item removed successfully");
       loadFavorites();
+      window.location.reload();
     } catch (error) {
       console.error("Error removing from favorite:", error);
       toast.error("Failed to remove from Favlist");

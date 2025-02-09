@@ -6,11 +6,12 @@ import { useState, useEffect, useRef } from "react";
 import {
   Menu,
   X,
-  Home,
   Image as ImageIcon,
   LogIn,
   Heart,
   LayoutDashboard,
+  Sparkles,
+  List,
 } from "lucide-react";
 import Link from "next/link";
 import ThemeToggle from "../core/ThemeToggle";
@@ -90,13 +91,13 @@ const Navbar = ({ session }: { session: UserProps | null }) => {
         {/* Desktop Navbar */}
         <nav className="hidden items-center justify-center space-x-6 lg:flex">
           <Link
-            href="/discover"
+            href="/generate"
             className={`flex items-center text-gray-900 dark:text-white ${
               scrolling ? "text-white" : ""
             }`}
           >
-            <Home size={18} className="mr-2 inline" />
-            Discover
+            <Sparkles size={18} className="mr-2 inline" />
+            Generate
           </Link>
           <Link
             href="/my-list"
@@ -104,7 +105,7 @@ const Navbar = ({ session }: { session: UserProps | null }) => {
               scrolling ? "text-white" : ""
             }`}
           >
-            <Heart size={18} className="mr-2 inline" />
+            <List size={18} className="mr-2 inline" />
             My List
           </Link>
           <Link
@@ -118,13 +119,13 @@ const Navbar = ({ session }: { session: UserProps | null }) => {
           </Link>
 
           <Link
-            href="/images"
+            href="/discover"
             className={`flex items-center text-gray-900 dark:text-white ${
               scrolling ? "text-white" : ""
             }`}
           >
             <ImageIcon size={18} className="mr-2 inline" />
-            Images
+            Discover
           </Link>
           <Link
             href="/dashboard"
@@ -192,19 +193,19 @@ const Navbar = ({ session }: { session: UserProps | null }) => {
           </div>
           <nav className="mt-4 space-y-4">
             <Link
-              href="/"
+              href="/generate"
               className="flex items-center text-gray-900 dark:text-white"
               onClick={toggleSidebar}
             >
-              <Home size={20} className="mr-2 inline" />
-              Discover
+              <Sparkles size={20} className="mr-2 inline" />
+              Generate
             </Link>
 
             <Link
               href="/my-list"
               className="flex items-center text-gray-900 dark:text-white"
             >
-              <Heart size={18} className="mr-2 inline" />
+              <List size={18} className="mr-2 inline" />
               My List
             </Link>
 
@@ -217,12 +218,12 @@ const Navbar = ({ session }: { session: UserProps | null }) => {
             </Link>
 
             <Link
-              href="/images"
+              href="/discover"
               className="flex items-center text-gray-900 dark:text-white"
               onClick={toggleSidebar}
             >
               <ImageIcon size={20} className="mr-2 inline" />
-              Images
+              Discover
             </Link>
             <Link
               href="/dashboard"
