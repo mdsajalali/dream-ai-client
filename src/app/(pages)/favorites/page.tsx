@@ -6,7 +6,7 @@ import Container from "@/components/shared/Container";
 import axiosInstance from "@/utils/axiosInstance";
 import { ImageCardProps } from "@/types/index.type";
 
-const MyListPage = () => {
+const FavoritesPage = () => {
   const [favorites, setFavorites] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -53,7 +53,7 @@ const MyListPage = () => {
           })
         ) : (
           <p className="col-span-full text-center text-gray-500 dark:text-white">
-            No posts created yet.
+            No favorites added yet.
           </p>
         )}
       </div>
@@ -61,4 +61,4 @@ const MyListPage = () => {
   );
 };
 
-export default MyListPage;
+export default FavoritesPage;

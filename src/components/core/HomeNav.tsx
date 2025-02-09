@@ -74,19 +74,27 @@ const HomeNav = ({ session }: { session: UserProps | null }) => {
                   Discover
                 </Link>
                 <Link
-                  href="/images"
-                  className="flex items-center text-white dark:text-white"
-                >
-                  <ImageIcon size={18} className="mr-2 inline" />
-                  Images
-                </Link>
-                <Link
                   href="/my-list"
                   className="flex items-center text-white dark:text-white"
                 >
                   <Heart size={18} className="mr-2 inline" />
                   My List
                 </Link>
+                <Link
+                  href="/favorites"
+                  className="flex items-center text-white dark:text-white"
+                >
+                  <Heart size={18} className="mr-2 inline" />
+                  Favorites
+                </Link>
+                <Link
+                  href="/images"
+                  className="flex items-center text-white dark:text-white"
+                >
+                  <ImageIcon size={18} className="mr-2 inline" />
+                  Images
+                </Link>
+
                 {session?.user || user?.email ? (
                   <div
                     onClick={() => {
@@ -155,6 +163,20 @@ const HomeNav = ({ session }: { session: UserProps | null }) => {
                     Discover
                   </Link>
                   <Link
+                    href="/my-list"
+                    className="flex items-center text-gray-900 dark:text-white"
+                  >
+                    <Heart size={18} className="mr-2 inline" />
+                    My List
+                  </Link>
+                  <Link
+                    href="/favorites"
+                    className="flex items-center text-gray-900 dark:text-white"
+                  >
+                    <Heart size={18} className="mr-2 inline" />
+                    Favorites
+                  </Link>
+                  <Link
                     href="/images"
                     className="flex items-center text-gray-900 dark:text-white"
                     onClick={toggleSidebar}
@@ -162,20 +184,14 @@ const HomeNav = ({ session }: { session: UserProps | null }) => {
                     <ImageIcon size={18} className="mr-2 inline" />
                     Images
                   </Link>
-                  <Link
-                    href="/my-list"
-                    className="flex items-center text-gray-900 dark:text-white"
-                  >
-                    <Heart size={18} className="mr-2 inline" />
-                    My List
-                  </Link>
+
                   {session?.user || user?.email ? (
                     <div
                       onClick={() => {
                         // eslint-disable-next-line @typescript-eslint/no-unused-expressions
                         signOut() && handleRemove();
                       }}
-                      className="flex cursor-pointer items-center text-white dark:text-white"
+                      className="flex cursor-pointer items-center text-black dark:text-white"
                     >
                       <LogIn size={18} className="mr-2 inline" />
                       Logout
@@ -186,7 +202,7 @@ const HomeNav = ({ session }: { session: UserProps | null }) => {
                         setIsFormOpen(true);
                         setIsOpen(false);
                       }}
-                      className="flex cursor-pointer items-center text-white dark:text-white"
+                      className="flex cursor-pointer items-center text-black dark:text-white"
                     >
                       <LogIn size={18} className="mr-2 inline" />
                       Login

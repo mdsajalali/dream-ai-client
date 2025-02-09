@@ -91,15 +91,6 @@ const Navbar = ({ session }: { session: UserProps | null }) => {
             Discover
           </Link>
           <Link
-            href="/images"
-            className={`flex items-center text-gray-900 dark:text-white ${
-              scrolling ? "text-white" : ""
-            }`}
-          >
-            <ImageIcon size={18} className="mr-2 inline" />
-            Images
-          </Link>
-          <Link
             href="/my-list"
             className={`flex items-center text-gray-900 dark:text-white ${
               scrolling ? "text-white" : ""
@@ -108,13 +99,33 @@ const Navbar = ({ session }: { session: UserProps | null }) => {
             <Heart size={18} className="mr-2 inline" />
             My List
           </Link>
+          <Link
+            href="/favorites"
+            className={`flex items-center text-gray-900 dark:text-white ${
+              scrolling ? "text-white" : ""
+            }`}
+          >
+            <Heart size={18} className="mr-2 inline" />
+            Favorites
+          </Link>
+
+          <Link
+            href="/images"
+            className={`flex items-center text-gray-900 dark:text-white ${
+              scrolling ? "text-white" : ""
+            }`}
+          >
+            <ImageIcon size={18} className="mr-2 inline" />
+            Images
+          </Link>
+
           {session?.user || user?.email ? (
             <div
               onClick={() => {
                 // eslint-disable-next-line @typescript-eslint/no-unused-expressions
                 signOut() && handleRemove();
               }}
-              className="flex cursor-pointer items-center text-white dark:text-white"
+              className="flex cursor-pointer items-center text-black dark:text-white"
             >
               <LogIn size={18} className="mr-2 inline" />
               Logout
@@ -122,7 +133,7 @@ const Navbar = ({ session }: { session: UserProps | null }) => {
           ) : (
             <div
               onClick={() => setIsFormOpen(true)}
-              className="flex cursor-pointer items-center text-white dark:text-white"
+              className="flex cursor-pointer items-center text-black dark:text-white"
             >
               <LogIn size={18} className="mr-2 inline" />
               Login
@@ -171,6 +182,23 @@ const Navbar = ({ session }: { session: UserProps | null }) => {
               <Home size={20} className="mr-2 inline" />
               Discover
             </Link>
+
+            <Link
+              href="/my-list"
+              className="flex items-center text-gray-900 dark:text-white"
+            >
+              <Heart size={18} className="mr-2 inline" />
+              My List
+            </Link>
+
+            <Link
+              href="/favorites"
+              className="flex items-center text-gray-900 dark:text-white"
+            >
+              <Heart size={18} className="mr-2 inline" />
+              Favorites
+            </Link>
+
             <Link
               href="/images"
               className="flex items-center text-gray-900 dark:text-white"
@@ -179,20 +207,13 @@ const Navbar = ({ session }: { session: UserProps | null }) => {
               <ImageIcon size={20} className="mr-2 inline" />
               Images
             </Link>
-            <Link
-              href="/my-list"
-              className="flex items-center text-gray-900 dark:text-white"
-            >
-              <Heart size={18} className="mr-2 inline" />
-              My List
-            </Link>
             {session?.user || user?.email ? (
               <div
                 onClick={() => {
                   // eslint-disable-next-line @typescript-eslint/no-unused-expressions
                   signOut() && handleRemove();
                 }}
-                className="flex cursor-pointer items-center text-white dark:text-white"
+                className="flex cursor-pointer items-center text-black dark:text-white"
               >
                 <LogIn size={18} className="mr-2 inline" />
                 Logout
@@ -203,7 +224,7 @@ const Navbar = ({ session }: { session: UserProps | null }) => {
                   setIsFormOpen(true);
                   setIsOpen(false);
                 }}
-                className="flex cursor-pointer items-center text-white dark:text-white"
+                className="flex cursor-pointer items-center text-black dark:text-white"
               >
                 <LogIn size={18} className="mr-2 inline" />
                 Login
