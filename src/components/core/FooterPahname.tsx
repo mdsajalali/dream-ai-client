@@ -5,7 +5,7 @@ import Footer from "../shared/Footer";
 const FooterPathname = () => {
   const pathname = usePathname();
 
-  return <>{pathname === "/dashboard" ? "" : <Footer />}</>;
+  return <>{pathname.startsWith("/dashboard") ? null : <Footer />}</>;
 };
 
 export default FooterPathname;

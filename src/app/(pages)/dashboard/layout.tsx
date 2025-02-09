@@ -1,4 +1,7 @@
+import ThemeToggle from "@/components/core/ThemeToggle";
+import { HeartIcon, ImageIcon, LogIn, User } from "lucide-react";
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "DreamAI",
@@ -12,7 +15,93 @@ export default async function RootLayout({
 }>) {
   return (
     <>
-      <main>{children}</main>
+      <div className="flex min-h-screen">
+        {/* Sidebar */}
+        <div className="hidden w-64 bg-gray-800 p-4 text-white dark:bg-black md:block">
+          <div className="flex items-center justify-between">
+            <Link href="/" className="text-2xl font-semibold">
+              DreamAI
+            </Link>
+            <ThemeToggle />
+          </div>
+          <ul>
+            <li>
+              <Link
+                href="/dashboard/users"
+                className="mb-4 mt-4 flex items-center space-x-2 rounded p-2 hover:bg-gray-700"
+              >
+                <User className="h-5 w-5" />
+                <span>User</span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/dashboard/favorites"
+                className="mb-4 flex items-center space-x-2 rounded p-2 hover:bg-gray-700"
+              >
+                <HeartIcon className="h-5 w-5" />
+                <span>Favorites</span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/dashboard/images"
+                className="mb-4 flex items-center space-x-2 rounded p-2 hover:bg-gray-700"
+              >
+                <ImageIcon className="h-5 w-5" />
+                <span>Images</span>
+              </Link>
+            </li>
+            <li>
+              <div className="mb-4 flex cursor-pointer items-center space-x-2 rounded p-2 hover:bg-gray-700">
+                <LogIn className="h-5 w-5" />
+                <span>Logout</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        {/* Main content */}
+        <div className="flex-1 p-6">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+            <div className="md:hidden block absolute right-0 px-4">
+              <ThemeToggle />
+            </div>
+            {children}
+          </div>
+        </div>
+
+        {/* Mobile sidebar */}
+        <div className="fixed bottom-0 left-0 w-full bg-gray-800 p-4 text-white md:hidden">
+          <div className="flex justify-around">
+            <Link
+              href="/dashboard/users"
+              className="flex flex-col items-center"
+            >
+              <User className="h-6 w-6" />
+              <span className="text-sm">User</span>
+            </Link>
+            <Link
+              href="/dashboard/favorites"
+              className="flex flex-col items-center"
+            >
+              <HeartIcon className="h-6 w-6" />
+              <span className="text-sm">Favorites</span>
+            </Link>
+            <Link
+              href="/dashboard/images"
+              className="flex flex-col items-center"
+            >
+              <ImageIcon className="h-6 w-6" />
+              <span className="text-sm">Images</span>
+            </Link>
+            <button className="flex flex-col items-center">
+              <LogIn className="h-6 w-6" />
+              <span className="text-sm">Logout</span>
+            </button>
+          </div>
+        </div>
+      </div>
     </>
   );
 }

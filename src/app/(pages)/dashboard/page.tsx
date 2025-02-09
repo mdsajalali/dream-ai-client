@@ -1,7 +1,5 @@
-import React from "react";
-
-const page = () => {
-  return <div></div>;
+const DashboardLayout = () => {
+  return <h1>Dream Ai</h1>;
 };
 
-export default page;
+export default DashboardLayout;

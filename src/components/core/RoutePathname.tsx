@@ -8,7 +8,7 @@ import { usePathname } from "next/navigation";
 const RoutePathname = ({ session }: { session: UserProps | null }) => {
   const pathname = usePathname();
 
-  if (pathname === "/dashboard") return null;
+ if (pathname.startsWith("/dashboard")) return null;
 
   return pathname === "/" ? (
     <HomeNav session={session} />
