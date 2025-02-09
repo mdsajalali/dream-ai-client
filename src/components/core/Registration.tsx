@@ -65,7 +65,8 @@ const Registration = ({ isFormOpen, setIsFormOpen }: RegistrationProps) => {
       const response = await axiosInstance.post("/auth/register", data);
       console.log("Signup Response:", response);
       if (response.status === 201) {
-        setIsFormOpen(false);
+        // setIsFormOpen(false);
+        setActiveTab("login");
         toast.success(response?.data?.message);
       }
     }

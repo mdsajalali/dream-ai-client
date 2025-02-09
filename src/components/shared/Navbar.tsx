@@ -98,15 +98,17 @@ const Navbar = ({ session }: { session: UserProps | null }) => {
             <Sparkles size={18} className="mr-2 inline" />
             Generate
           </Link>
-          <Link
-            href="/my-list"
-            className={`flex items-center text-gray-900 dark:text-white ${
-              scrolling ? "text-white" : ""
-            }`}
-          >
-            <List size={18} className="mr-2 inline" />
-            My List
-          </Link>
+          {user?.email && (
+            <Link
+              href="/my-list"
+              className={`flex items-center text-gray-900 dark:text-white ${
+                scrolling ? "text-white" : ""
+              }`}
+            >
+              <List size={18} className="mr-2 inline" />
+              My List
+            </Link>
+          )}
 
           <Link
             href="/discover"
@@ -201,13 +203,15 @@ const Navbar = ({ session }: { session: UserProps | null }) => {
               Generate
             </Link>
 
-            <Link
-              href="/my-list"
-              className="flex items-center text-gray-900 dark:text-white"
-            >
-              <List size={18} className="mr-2 inline" />
-              My List
-            </Link>
+            {user?.email && (
+              <Link
+                href="/my-list"
+                className="flex items-center text-gray-900 dark:text-white"
+              >
+                <List size={18} className="mr-2 inline" />
+                My List
+              </Link>
+            )}
 
             <Link
               href="/discover"
