@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 import { Inter } from "next/font/google";
-import Footer from "@/components/shared/Footer";
 import { Toaster } from "sonner";
 import RoutePathname from "@/components/core/RoutePathname";
 import TopToScroll from "@/components/shared/TopToScroll";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/utils/authOptions";
+import FooterPathname from "@/components/core/FooterPahname";
 
 const inter = Inter({
   weight: "400",
@@ -35,7 +35,7 @@ export default async function RootLayout({
         <main>{children}</main>
         {/* Top to scroll */}
         <TopToScroll />
-        <Footer />
+        <FooterPathname />
       </body>
     </html>
   );

@@ -3,7 +3,15 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { Menu, X, Home, Image as ImageIcon, LogIn, Heart } from "lucide-react";
+import {
+  Menu,
+  X,
+  Home,
+  Image as ImageIcon,
+  LogIn,
+  Heart,
+  LayoutDashboard,
+} from "lucide-react";
 import Link from "next/link";
 import ThemeToggle from "../core/ThemeToggle";
 import Registration from "../core/Registration";
@@ -118,6 +126,15 @@ const Navbar = ({ session }: { session: UserProps | null }) => {
             <ImageIcon size={18} className="mr-2 inline" />
             Images
           </Link>
+          <Link
+            href="/dashboard"
+            className={`flex items-center text-gray-900 dark:text-white ${
+              scrolling ? "text-white" : ""
+            }`}
+          >
+            <LayoutDashboard size={18} className="mr-2 inline" />
+            Dashboard
+          </Link>
 
           {session?.user || user?.email ? (
             <div
@@ -206,6 +223,14 @@ const Navbar = ({ session }: { session: UserProps | null }) => {
             >
               <ImageIcon size={20} className="mr-2 inline" />
               Images
+            </Link>
+            <Link
+              href="/dashboard"
+              className="flex items-center text-gray-900 dark:text-white"
+              onClick={toggleSidebar}
+            >
+              <LayoutDashboard size={20} className="mr-2 inline" />
+              Dashboard
             </Link>
             {session?.user || user?.email ? (
               <div
