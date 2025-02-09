@@ -128,6 +128,7 @@ const ImageCard = ({ image }: ImageCardProps) => {
       <p className="my-3 mb-auto line-clamp-2 text-sm text-gray-600 dark:text-white">
         {image?.prompt}
       </p>
+
       <div className="mt-3 flex items-center gap-4">
         <Download
           className="h-5 w-5 cursor-pointer text-gray-600 hover:text-black dark:text-white"

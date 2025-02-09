@@ -14,18 +14,11 @@ const MyListPage: React.FC = () => {
   const [favorites, setFavorites] = useState<SingleImageCardProps[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const user = JwtDecode();
-  const userId = String(user?.id);
-
-  console.log("userId", userId);
-
-  console.log("favorites", favorites);
 
   useEffect(() => {
-    if (!userId) return;
-
     const fetchFavorites = async () => {
       try {
-        const response = await axiosInstance.get(`/images/${userId}`);
+        const response = await axiosInstance.get(`/images/${user?.id}`);
         setFavorites(response?.data);
       } catch (error) {
         console.error("Error fetching favorites:", error);
@@ -34,8 +27,10 @@ const MyListPage: React.FC = () => {
       }
     };
 
-    fetchFavorites();
-  }, [userId]);
+    if (user?.id) {
+      fetchFavorites();
+    }
+  }, [user?.id]);
 
   return (
     <Container>
