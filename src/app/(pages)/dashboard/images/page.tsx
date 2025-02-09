@@ -1,6 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useEffect, useState } from "react"; 
 import {
   Table,
   TableBody,
@@ -20,6 +19,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import { toast } from "sonner";
 
 type Image = {
   _id: string;
@@ -56,8 +56,11 @@ const DashboardImages = () => {
 
   const handleDelete = async (id: string) => {
     try {
-      await axios.delete(`/api/discover-image/${id}`);
+      const res = await axiosInstance.delete(`/image/${id}`);
       setImages(images.filter((image) => image._id !== id));
+      if (res?.status === 200) {
+        toast.success(res?.data?.message);
+      }
     } catch (error) {
       console.error("Error deleting image", error);
     }
