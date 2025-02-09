@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect, ReactNode } from "react";
 import ThemeToggle from "@/components/core/ThemeToggle";
-import { HeartIcon, ImageIcon, LogIn, User, Menu, X } from "lucide-react";
+import { ImageIcon, LogIn, User, Menu, X } from "lucide-react";
 import Link from "next/link";
 
 export default function SidebarLayout({ children }: { children: ReactNode }) {
@@ -20,7 +20,7 @@ export default function SidebarLayout({ children }: { children: ReactNode }) {
   }, [isOpen]);
 
   return (
-    <div className="flex min-h-screen">
+    <div className="z-[999] flex min-h-screen">
       {/* Sidebar for desktop */}
       <div className="hidden w-64 bg-gray-800 p-4 text-white dark:bg-black md:block">
         <div className="flex items-center justify-between">
@@ -40,20 +40,11 @@ export default function SidebarLayout({ children }: { children: ReactNode }) {
               <span>Users</span>
             </Link>
           </li>
-          <li>
-            <Link
-              href="/dashboard/favorites"
-              className={`flex items-center my-2 space-x-2 rounded p-2 hover:bg-gray-700 ${active === "/dashboard/favorites" ? "bg-gray-700" : ""}`}
-              onClick={() => setActive("/dashboard/favorites")}
-            >
-              <HeartIcon className="h-5 w-5" />
-              <span>Favorites</span>
-            </Link>
-          </li>
+
           <li>
             <Link
               href="/dashboard/images"
-              className={`flex items-center space-x-2 rounded p-2 hover:bg-gray-700 ${active === "/dashboard/images" ? "bg-gray-700" : ""}`}
+              className={`flex my-2 items-center space-x-2 rounded p-2 hover:bg-gray-700 ${active === "/dashboard/images" ? "bg-gray-700" : ""}`}
               onClick={() => setActive("/dashboard/images")}
             >
               <ImageIcon className="h-5 w-5" />
@@ -71,7 +62,7 @@ export default function SidebarLayout({ children }: { children: ReactNode }) {
       </div>
 
       {/* Mobile Sidebar */}
-      <div className="fixed left-0 top-0 flex w-full items-center justify-between bg-gray-800 p-4 text-white md:hidden">
+      <div className="fixed left-0 top-0 z-[999] flex w-full items-center justify-between bg-gray-800 p-4 text-white md:hidden">
         <button onClick={() => setIsOpen(!isOpen)} className="text-white">
           {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
@@ -105,19 +96,7 @@ export default function SidebarLayout({ children }: { children: ReactNode }) {
               <span>Users</span>
             </Link>
           </li>
-          <li>
-            <Link
-              href="/dashboard/favorites"
-              className={`flex items-center space-x-2 rounded p-2 hover:bg-gray-700 ${active === "/dashboard/favorites" ? "bg-gray-700" : ""}`}
-              onClick={() => {
-                setActive("/dashboard/favorites");
-                setIsOpen(false);
-              }}
-            >
-              <HeartIcon className="h-5 w-5" />
-              <span>Favorites</span>
-            </Link>
-          </li>
+
           <li>
             <Link
               href="/dashboard/images"
