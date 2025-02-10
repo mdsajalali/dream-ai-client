@@ -13,8 +13,8 @@ const Hero = () => {
       <p className="mt-4 max-w-2xl text-lg text-white md:text-xl">
         Create Anything - AI with No Restrictions
       </p>
-      <Link href="/discover">
-        <button className="mt-6 rounded-full bg-gradient-to-r from-lime-400 to-cyan-500 px-4 py-1 text-lg font-semibold text-black shadow-lg transition-transform duration-300 hover:scale-105 md:px-8 md:py-3 text-[12px] md:text-[16px]">
+      <Link href="/generate">
+        <button className="mt-6 rounded-full bg-gradient-to-r from-lime-400 to-cyan-500 px-4 py-1 text-[12px] text-lg font-semibold text-black shadow-lg transition-transform duration-300 hover:scale-105 md:px-8 md:py-3 md:text-[16px]">
           Get Started
         </button>
       </Link>
