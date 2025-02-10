@@ -19,6 +19,14 @@ import {
 } from "@/components/ui/select";
 import { Trash } from "lucide-react";
 import { toast } from "sonner";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 interface User {
   _id: string;
@@ -30,7 +38,9 @@ interface User {
 
 export default function UserTable() {
   const [users, setUsers] = useState<User[]>([]);
-  const [loading, setLoading] = useState(true); // Loading state
+  const [loading, setLoading] = useState(true);
+  const [isDialogOpen, setDialogOpen] = useState(false);
+  const [userToDelete, setUserToDelete] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -40,7 +50,7 @@ export default function UserTable() {
       } catch (error) {
         console.error("Error fetching users:", error);
       } finally {
-        setLoading(false); // Stop loading once data is fetched
+        setLoading(false);
       }
     };
     fetchUsers();
@@ -70,21 +80,28 @@ export default function UserTable() {
     }
   };
 
-  const handleDeleteUser = async (id: string) => {
-    if (id === "67aa3381a4bb15c913d384c3") {
-      toast.error("This user cannot be deleted.");
-      return;
-    }
+  const handleDeleteClick = (id: string) => {
+    setUserToDelete(id);
+    setDialogOpen(true);
+  };
 
-    try {
-      const res = await axiosInstance.delete(`/auth/user/${id}`);
-      setUsers((prevUsers) => prevUsers.filter((user) => user._id !== id));
+  const handleDeleteConfirmation = async () => {
+    if (userToDelete) {
+      try {
+        const res = await axiosInstance.delete(`/auth/user/${userToDelete}`);
+        setUsers((prevUsers) =>
+          prevUsers.filter((user) => user._id !== userToDelete),
+        );
 
-      if (res?.status === 200) {
-        toast.success(res?.data?.message);
+        if (res?.status === 200) {
+          toast.success(res?.data?.message);
+        }
+      } catch (error) {
+        console.error("Error deleting user:", error);
+      } finally {
+        setDialogOpen(false);
+        setUserToDelete(null);
       }
-    } catch (error) {
-      console.error("Error deleting user:", error);
     }
   };
 
@@ -152,7 +169,7 @@ export default function UserTable() {
 
                     <TableCell>
                       <button
-                        onClick={() => handleDeleteUser(user._id)}
+                        onClick={() => handleDeleteClick(user._id)}
                         className={`text-red-600 hover:text-red-800 ${
                           user._id === "67aa3381a4bb15c913d384c3"
                             ? "cursor-not-allowed opacity-50"
@@ -170,6 +187,29 @@ export default function UserTable() {
           </div>
         )}
       </div>
+
+      <Dialog open={isDialogOpen} onOpenChange={setDialogOpen}>
+        <DialogContent>
+          <DialogTitle>Confirm Deletion</DialogTitle>
+          <DialogDescription>
+            Are you sure you want to delete this user? This action cannot be
+            undone.
+          </DialogDescription>
+          <DialogFooter>
+            <DialogClose asChild>
+              <button className="rounded bg-gray-100 px-4 py-2 text-gray-600 hover:bg-gray-200 hover:text-gray-800 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-gray-100">
+                Cancel
+              </button>
+            </DialogClose>
+            <button
+              onClick={handleDeleteConfirmation}
+              className="ml-4 rounded bg-red-100 px-4 py-2 text-red-600 hover:bg-red-200 hover:text-red-800 dark:bg-red-600 dark:text-white dark:hover:bg-red-500 dark:hover:text-white"
+            >
+              Confirm Delete
+            </button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
