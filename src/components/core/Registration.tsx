@@ -12,6 +12,7 @@ import { Eye, EyeOff } from "lucide-react";
 import { RegistrationProps } from "@/types/index.type";
 import axiosInstance from "@/utils/axiosInstance";
 import { toast } from "sonner";
+import DemoAccounts from "./DemoAccounts";
 
 // Separate schemas for login and signup
 const loginSchema = z.object({
@@ -134,6 +135,8 @@ const Registration = ({ isFormOpen, setIsFormOpen }: RegistrationProps) => {
                 Login
               </Button>
             </form>
+            {/* View Account details modal */}
+            <DemoAccounts />
 
             {/* Google Login Button for Login */}
             {/* <div className="relative mt-4 text-center">
