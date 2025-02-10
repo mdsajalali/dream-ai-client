@@ -3,10 +3,17 @@ import { useState, useEffect, ReactNode } from "react";
 import ThemeToggle from "@/components/core/ThemeToggle";
 import { ImageIcon, LogIn, User, Menu, X } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function SidebarLayout({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
   const [active, setActive] = useState("/dashboard/users");
+  const router = useRouter();
+
+  const handleRemove = () => {
+    localStorage.removeItem("accessToken");
+    router.push("/");
+  };
 
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -44,7 +51,7 @@ export default function SidebarLayout({ children }: { children: ReactNode }) {
           <li>
             <Link
               href="/dashboard/images"
-              className={`flex my-2 items-center space-x-2 rounded p-2 hover:bg-gray-700 ${active === "/dashboard/images" ? "bg-gray-700" : ""}`}
+              className={`my-2 flex items-center space-x-2 rounded p-2 hover:bg-gray-700 ${active === "/dashboard/images" ? "bg-gray-700" : ""}`}
               onClick={() => setActive("/dashboard/images")}
             >
               <ImageIcon className="h-5 w-5" />
@@ -53,7 +60,10 @@ export default function SidebarLayout({ children }: { children: ReactNode }) {
           </li>
           <hr className="my-2 border-gray-700" />
           <li>
-            <button className="flex w-full items-center space-x-2 rounded p-2 hover:text-gray-700">
+            <button
+              onClick={handleRemove}
+              className="flex w-full items-center space-x-2 rounded p-2 hover:text-gray-700"
+            >
               <LogIn className="h-5 w-5" />
               <span>Logout</span>
             </button>
