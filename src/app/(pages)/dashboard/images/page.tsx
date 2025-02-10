@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react"; 
+import React, { useEffect, useState } from "react";
 import {
   Table,
   TableBody,
@@ -11,15 +11,15 @@ import { Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import axiosInstance from "@/utils/axiosInstance";
 import {
-  Pagination,
-  PaginationContent,
-  PaginationEllipsis,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "@/components/ui/pagination";
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+  DialogClose,
+} from "@/components/ui/dialog";
 import { toast } from "sonner";
+import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
 
 type Image = {
   _id: string;
@@ -35,6 +35,8 @@ const DashboardImages = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(1);
+  const [isDialogOpen, setDialogOpen] = useState(false);
+  const [imageToDelete, setImageToDelete] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchImages = async () => {
@@ -63,6 +65,19 @@ const DashboardImages = () => {
       }
     } catch (error) {
       console.error("Error deleting image", error);
+    }
+  };
+
+  const handleDeleteClick = (id: string) => {
+    setImageToDelete(id);
+    setDialogOpen(true);
+  };
+
+  const handleDeleteConfirmation = () => {
+    if (imageToDelete) {
+      handleDelete(imageToDelete);
+      setDialogOpen(false);
+      setImageToDelete(null);
     }
   };
 
@@ -128,7 +143,7 @@ const DashboardImages = () => {
                     <TableCell>
                       <Button
                         variant="outline"
-                        onClick={() => handleDelete(image._id)}
+                        onClick={() => handleDeleteClick(image._id)}
                         className="flex items-center"
                       >
                         <Trash2 className="mr-2" /> Delete
@@ -200,6 +215,30 @@ const DashboardImages = () => {
           </PaginationContent>
         </Pagination>
       </div>
+
+      {/* Delete Confirmation Dialog */}
+      <Dialog open={isDialogOpen} onOpenChange={setDialogOpen}>
+        <DialogContent>
+          <DialogTitle>Confirm Deletion</DialogTitle>
+          <DialogDescription>
+            Are you sure you want to delete this image? This action cannot be
+            undone.
+          </DialogDescription>
+          <DialogFooter>
+            <DialogClose asChild>
+              <Button className="rounded bg-gray-100 text-gray-600 hover:bg-gray-200">
+                Cancel
+              </Button>
+            </DialogClose>
+            <Button
+              onClick={handleDeleteConfirmation}
+              className="ml-4 rounded bg-red-100 text-red-600 hover:bg-red-200"
+            >
+              Confirm Delete
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
