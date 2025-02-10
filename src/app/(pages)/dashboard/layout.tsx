@@ -4,6 +4,7 @@ import ThemeToggle from "@/components/core/ThemeToggle";
 import { ImageIcon, LogIn, User, Menu, X } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 export default function SidebarLayout({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,6 +13,7 @@ export default function SidebarLayout({ children }: { children: ReactNode }) {
 
   const handleRemove = () => {
     localStorage.removeItem("accessToken");
+    toast.success("Logout successfully!")
     router.push("/");
   };
 

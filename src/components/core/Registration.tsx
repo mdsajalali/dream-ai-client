@@ -40,7 +40,6 @@ const Registration = ({ isFormOpen, setIsFormOpen }: RegistrationProps) => {
   const [activeTab, setActiveTab] = useState("login");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
   const {
     register,
     handleSubmit,
@@ -53,21 +52,37 @@ const Registration = ({ isFormOpen, setIsFormOpen }: RegistrationProps) => {
     console.log(`Submitting ${activeTab} form`, data);
 
     if (activeTab === "login") {
-      const response = await axiosInstance.post("/auth/login", data);
-      console.log("Login Response:", response?.data);
-      if (response.status === 200) {
-        localStorage.setItem("accessToken", response?.data?.token);
-        setIsFormOpen(false);
-        toast.success(response?.data?.message);
-        window.location.reload();
+      try {
+        const response = await axiosInstance.post("/auth/login", data);
+
+        if (response.status === 200) {
+          localStorage.setItem("accessToken", response?.data?.token);
+          setIsFormOpen(false);
+          toast.success(response?.data?.message);
+          window.location.reload();
+        }
+      } catch (error) {
+        if (error.response) {
+          toast.error(error?.response?.data?.message || "Login failed");
+        } else {
+          toast.error("Something went wrong. Please try again.");
+        }
       }
     } else {
-      const response = await axiosInstance.post("/auth/register", data);
-      console.log("Signup Response:", response);
-      if (response.status === 201) {
-        // setIsFormOpen(false);
-        setActiveTab("login");
-        toast.success(response?.data?.message);
+      try {
+        const response = await axiosInstance.post("/auth/register", data);
+        if (response.status === 201) {
+          setActiveTab("login");
+          toast.success(response?.data?.message);
+        }
+      } catch (error) {
+        console.error("Signup Error:", error);
+
+        if (error.response) {
+          toast.error(error.response.data?.message || "An error occurred");
+        } else {
+          toast.error("Something went wrong");
+        }
       }
     }
   };
