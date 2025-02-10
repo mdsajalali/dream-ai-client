@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 
 export default function SidebarLayout({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [active, setActive] = useState("/dashboard/users");
+  const [active, setActive] = useState("/dashboard");
   const router = useRouter();
 
   const handleRemove = () => {
@@ -39,9 +39,9 @@ export default function SidebarLayout({ children }: { children: ReactNode }) {
         <ul>
           <li>
             <Link
-              href="/dashboard/users"
-              className={`mt-5 flex items-center space-x-2 rounded p-2 hover:bg-gray-700 ${active === "/dashboard/users" ? "bg-gray-700" : ""}`}
-              onClick={() => setActive("/dashboard/users")}
+              href="/dashboard"
+              className={`mt-5 flex items-center space-x-2 rounded p-2 hover:bg-gray-700 ${active === "/dashboard" ? "bg-gray-700" : ""}`}
+              onClick={() => setActive("/dashboard")}
             >
               <User className="h-5 w-5" />
               <span>Users</span>
@@ -62,7 +62,7 @@ export default function SidebarLayout({ children }: { children: ReactNode }) {
           <li>
             <button
               onClick={handleRemove}
-              className="flex w-full items-center space-x-2 rounded p-2 hover:text-gray-700"
+              className="flex w-full items-center space-x-2 rounded p-2 hover:text-gray-200"
             >
               <LogIn className="h-5 w-5" />
               <span>Logout</span>
