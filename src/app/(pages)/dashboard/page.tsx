@@ -137,11 +137,15 @@ export default function UserTable() {
                         onValueChange={(value) =>
                           handleRoleChange(user._id, value)
                         }
-                        disabled={user._id === "67aa3381a4bb15c913d384c3"}
+                        disabled={
+                          user._id === "67aa3381a4bb15c913d384c3" ||
+                          user._id === "67aa712e3e681c28b710940f"
+                        }
                       >
                         <SelectTrigger
                           className={`w-28 ${
-                            user._id === "67aa3381a4bb15c913d384c3"
+                            user._id === "67aa3381a4bb15c913d384c3" ||
+                            user._id === "67aa712e3e681c28b710940f"
                               ? "cursor-not-allowed opacity-50"
                               : ""
                           }`}
@@ -171,11 +175,15 @@ export default function UserTable() {
                       <button
                         onClick={() => handleDeleteClick(user._id)}
                         className={`text-red-600 hover:text-red-800 ${
-                          user._id === "67aa3381a4bb15c913d384c3"
+                          user._id === "67aa3381a4bb15c913d384c3" ||
+                          user._id === "67aa712e3e681c28b710940f"
                             ? "cursor-not-allowed opacity-50"
                             : ""
                         }`}
-                        disabled={user._id === "67aa3381a4bb15c913d384c3"}
+                        disabled={
+                          user._id === "67aa3381a4bb15c913d384c3" ||
+                          user._id === "67aa712e3e681c28b710940f"
+                        }
                       >
                         <Trash size={20} />
                       </button>
