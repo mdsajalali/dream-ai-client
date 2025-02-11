@@ -41,6 +41,8 @@ const Registration = ({ isFormOpen, setIsFormOpen }: RegistrationProps) => {
   const [activeTab, setActiveTab] = useState("login");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -50,7 +52,7 @@ const Registration = ({ isFormOpen, setIsFormOpen }: RegistrationProps) => {
   });
 
   const onSubmit = async (data) => {
-    console.log(`Submitting ${activeTab} form`, data);
+    setIsLoading(true);
 
     if (activeTab === "login") {
       try {
@@ -84,6 +86,8 @@ const Registration = ({ isFormOpen, setIsFormOpen }: RegistrationProps) => {
         } else {
           toast.error("Something went wrong");
         }
+      } finally {
+        setIsLoading(false);
       }
     }
   };
@@ -131,8 +135,12 @@ const Registration = ({ isFormOpen, setIsFormOpen }: RegistrationProps) => {
                 </p>
               )}
 
-              <Button className="w-full" type="submit">
-                Login
+              <Button className="w-full" type="submit" disabled={isLoading}>
+                {isLoading ? (
+                  <div className="h-5 w-5 animate-spin rounded-full border-2 border-gray-500 border-t-gray-300 dark:border-gray-700 dark:border-t-gray-100" />
+                ) : (
+                  "Login"
+                )}
               </Button>
             </form>
             {/* View Account details modal */}
@@ -219,8 +227,12 @@ const Registration = ({ isFormOpen, setIsFormOpen }: RegistrationProps) => {
                 </p>
               )}
 
-              <Button className="w-full" type="submit">
-                Sign Up
+              <Button className="w-full" type="submit" disabled={isLoading}>
+                {isLoading ? (
+                  <div className="h-5 w-5 animate-spin rounded-full border-2 border-gray-500 border-t-gray-300 dark:border-gray-700 dark:border-t-gray-100" />
+                ) : (
+                  "Sign Up"
+                )}
               </Button>
             </form>
 
