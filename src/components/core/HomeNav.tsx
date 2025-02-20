@@ -173,6 +173,7 @@ const HomeNav = ({ session }: { session: UserProps | null }) => {
                   >
                     <X size={24} />
                   </button>
+                  <ThemeToggle />
                 </div>
                 <nav className="mt-4 space-y-4">
                   <Link
@@ -242,8 +243,6 @@ const HomeNav = ({ session }: { session: UserProps | null }) => {
                       Login
                     </div>
                   )}
-
-                  <ThemeToggle />
                 </nav>
               </div>
             </div>
