@@ -13,7 +13,7 @@ export default function SidebarLayout({ children }: { children: ReactNode }) {
 
   const handleRemove = () => {
     localStorage.removeItem("accessToken");
-    toast.success("Logout successfully!")
+    toast.success("Logout successfully!");
     router.push("/");
   };
 
@@ -29,7 +29,7 @@ export default function SidebarLayout({ children }: { children: ReactNode }) {
   }, [isOpen]);
 
   return (
-    <div className="z-[999] flex min-h-screen">
+    <div className="z-[9999] flex min-h-screen">
       {/* Sidebar for desktop */}
       <div className="hidden w-64 bg-gray-800 p-4 text-white dark:bg-black md:block">
         <div className="flex items-center justify-between">
@@ -74,7 +74,7 @@ export default function SidebarLayout({ children }: { children: ReactNode }) {
       </div>
 
       {/* Mobile Sidebar */}
-      <div className="fixed left-0 top-0 z-[999] flex w-full items-center justify-between bg-gray-800 p-4 text-white md:hidden">
+      <div className="fixed left-0 top-0 z-[9999] flex w-full items-center justify-between bg-gray-800 p-4 text-white md:hidden">
         <button onClick={() => setIsOpen(!isOpen)} className="text-white">
           {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
@@ -86,7 +86,7 @@ export default function SidebarLayout({ children }: { children: ReactNode }) {
 
       {/* Mobile Sidebar Overlay */}
       <div
-        className={`fixed left-0 top-0 h-full w-64 transform bg-gray-900 p-6 text-white transition-transform ${isOpen ? "translate-x-0" : "-translate-x-full"} sidebar`}
+        className={`fixed left-0 top-0 z-[9999] h-full w-64 transform bg-gray-900 p-6 text-white transition-transform ${isOpen ? "translate-x-0" : "-translate-x-full"} sidebar`}
       >
         <button
           onClick={() => setIsOpen(false)}
@@ -97,10 +97,10 @@ export default function SidebarLayout({ children }: { children: ReactNode }) {
         <ul className="mt-10 space-y-4">
           <li>
             <Link
-              href="/dashboard/users"
-              className={`flex items-center space-x-2 rounded p-2 hover:bg-gray-700 ${active === "/dashboard/users" ? "bg-gray-700" : ""}`}
+              href="/dashboard"
+              className={`flex items-center space-x-2 rounded p-2 hover:bg-gray-700 ${active === "/dashboard" ? "bg-gray-700" : ""}`}
               onClick={() => {
-                setActive("/dashboard/users");
+                setActive("/dashboard");
                 setIsOpen(false);
               }}
             >
