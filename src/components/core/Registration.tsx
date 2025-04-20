@@ -12,7 +12,6 @@ import { Eye, EyeOff } from "lucide-react";
 import { RegistrationProps } from "@/types/index.type";
 import axiosInstance from "@/utils/axiosInstance";
 import { toast } from "sonner";
-import DemoAccounts from "./DemoAccounts";
 
 // Separate schemas for login and signup
 const loginSchema = z.object({
@@ -46,6 +45,7 @@ const Registration = ({ isFormOpen, setIsFormOpen }: RegistrationProps) => {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm({
     resolver: zodResolver(activeTab === "login" ? loginSchema : signupSchema),
@@ -90,6 +90,17 @@ const Registration = ({ isFormOpen, setIsFormOpen }: RegistrationProps) => {
         setIsLoading(false);
       }
     }
+  };
+
+  // Demo user/admin data
+  const demoUserLogin = () => {
+    setValue("email", "user@dreamai.com");
+    setValue("password", "Dreamai2025");
+  };
+
+  const demoAdminLogin = () => {
+    setValue("email", "admin@dreamai.com");
+    setValue("password", "Dreamai2025");
   };
 
   return (
@@ -143,8 +154,15 @@ const Registration = ({ isFormOpen, setIsFormOpen }: RegistrationProps) => {
                 )}
               </Button>
             </form>
-            {/* View Account details modal */}
-            <DemoAccounts />
+
+            <div className="mt-4 flex w-full space-x-4">
+              <Button className="w-full" type="button" onClick={demoUserLogin}>
+                Demo User
+              </Button>
+              <Button className="w-full" type="button" onClick={demoAdminLogin}>
+                Demo Admin
+              </Button>
+            </div>
 
             {/* Google Login Button for Login */}
             {/* <div className="relative mt-4 text-center">
