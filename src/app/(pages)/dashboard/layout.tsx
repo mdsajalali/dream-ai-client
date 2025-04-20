@@ -133,7 +133,7 @@ export default function SidebarLayout({ children }: { children: ReactNode }) {
       </div>
 
       {/* Main Content */}
-      <div className="mt-14 flex-1 p-6 md:mt-0">{children}</div>
+      <div className="mt-14 w-full flex-1 p-6 md:mt-0">{children}</div>
     </div>
   );
 }

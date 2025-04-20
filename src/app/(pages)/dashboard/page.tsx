@@ -203,7 +203,7 @@ export default function UserTable() {
             Are you sure you want to delete this user? This action cannot be
             undone.
           </DialogDescription>
-          <DialogFooter>
+          <DialogFooter className="flex gap-2">
             <DialogClose asChild>
               <button className="rounded bg-gray-100 px-4 py-2 text-gray-600 hover:bg-gray-200 hover:text-gray-800 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-gray-100">
                 Cancel
@@ -211,7 +211,7 @@ export default function UserTable() {
             </DialogClose>
             <button
               onClick={handleDeleteConfirmation}
-              className="ml-4 rounded bg-red-100 px-4 py-2 text-red-600 hover:bg-red-200 hover:text-red-800 dark:bg-red-600 dark:text-white dark:hover:bg-red-500 dark:hover:text-white"
+              className="rounded bg-red-100 px-4 py-2 text-red-600 hover:bg-red-200 hover:text-red-800 dark:bg-red-600 dark:text-white dark:hover:bg-red-500 dark:hover:text-white"
             >
               Confirm Delete
             </button>
