@@ -22,7 +22,7 @@
 - **Node.js** – Fast and scalable JavaScript runtime  
 - **Express** – Lightweight and flexible web framework  
 - **Mongoose** – MongoDB object modeling and query handling  
-- **Supabase** – Secure cloud-based storage and database services  
+- **Cloudinary** – Secure image hosting
 - **Together AI** – Advanced AI model for text-to-image generation  
 
 ## 🌟 Features
@@ -59,14 +59,16 @@ Create a **.env** file in the frontend and **.env** file in the backend. Add the
 GOOGLE_ID=your_google_client_id
 GOOGLE_SECRET=your_google_client_secret
 NEXTAUTH_SECRET=your_nextauth_secret
+NEXT_PUBLIC_BASE_URL=your_base_url
 ```
 
 #### Backend (.env)
 ```env
 TOGETHER_API_KEY=your_together_ai_api_key
-TOGETHER_AI_MODEL=black-forest-labs/FLUX.1-schnell-Free
-SUPABASE_URL=your_supabase_url
-SUPABASE_KEY=your_supabase_key
+TOGETHER_AI_MODEL=your_together_ai_modal
+cloud_name=your_cloudinary_cloud_name
+api_key=your_cloudinary_api_key
+api_secret=your_cloudinary_api_secret
 MONGO_URI=your_mongodb_connection_string
 PORT=8080
 SECRET_KEY=your_secret_key
